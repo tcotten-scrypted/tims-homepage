@@ -8,6 +8,35 @@ body {
   padding: 2rem 1.5rem;
   line-height: 1.65;
   color: #1a1a1a;
+  background-color: #f3f3f3;
+  background-image:
+    radial-gradient(ellipse 85% 75% at 12% 8%, #faf1ea 0%, transparent 58%),
+    radial-gradient(ellipse 70% 60% at 92% 4%, #eed7df 0%, transparent 52%),
+    radial-gradient(ellipse 75% 65% at 88% 92%, #f0d2c7 0%, transparent 55%),
+    radial-gradient(ellipse 80% 70% at 8% 95%, #eed7df 0%, transparent 50%),
+    radial-gradient(ellipse 120% 90% at 48% 48%, #f0d2c7 0%, transparent 62%);
+}
+
+/* Full-bleed hero above the narrow column */
+.splash-banner {
+  width: 100vw;
+  max-width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: -2rem;
+  margin-bottom: 1.35rem;
+  border-radius: 0 0 6px 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+}
+
+.splash-banner video {
+  width: 100%;
+  height: auto;
+  max-height: min(42vh, 420px);
+  object-fit: cover;
+  display: block;
 }
 h1 {
   font-size: 1.75rem;

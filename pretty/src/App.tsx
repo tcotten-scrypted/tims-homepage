@@ -1,5 +1,6 @@
 import { BoardyIntroButton } from 'boardy-intro-react'
 import 'boardy-intro-react/style.css'
+import { SplashBanner } from './SplashBanner'
 import './site.css'
 
 function SkillsSection() {
@@ -165,6 +166,7 @@ function SkillsSection() {
 export default function App() {
   return (
     <>
+      <SplashBanner />
       <header>
         <h1>Tim Cotten</h1>
         <p className="tagline">
@@ -241,7 +243,7 @@ export default function App() {
           built an organic community of token holders (10k+) around our work.
         </p>
         <p className="building-cta">
-          Raising our seed round. Get my attention from a qualified AI Agent intro:{' '}
+          Raising our seed round. Get my attention via a16z, PTC, or Boardy:{' '}
           <BoardyIntroButton
             introMessage="Hi Boardy — I'd like to connect with Tim Cotten (Scrypted) about what I'm building. Happy to share context so you can route this the right way."
             label="Get an intro from Boardy"
