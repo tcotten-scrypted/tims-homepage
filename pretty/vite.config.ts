@@ -13,7 +13,8 @@ const reactDomRoot = path.resolve(__dirname, 'node_modules/react-dom')
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: './',
+  // '/' so /demo/* deep links resolve /assets/* correctly; './' breaks nested routes.
+  base: '/',
   plugins: [react()],
   resolve: {
     dedupe: ['react', 'react-dom'],
