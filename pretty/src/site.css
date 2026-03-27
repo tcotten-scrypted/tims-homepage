@@ -1,0 +1,175 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: Georgia, serif;
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  line-height: 1.65;
+  color: #1a1a1a;
+}
+h1 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem 0;
+}
+h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 2.5rem 0 0.75rem 0;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.25rem;
+}
+h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1rem 0 0.75rem 0;
+  padding-bottom: 0.25rem;
+}
+p {
+  margin: 0 0 1rem 0;
+}
+a {
+  color: #0066cc;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+.tagline {
+  color: #555;
+  font-size: 1rem;
+  margin-bottom: 0.65rem;
+}
+.header-note {
+  color: #5c5c5c;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  margin: 0 0 1.35rem 0;
+}
+.cta {
+  margin: 1.5rem 0;
+}
+.cta a {
+  font-weight: 600;
+}
+.experience-item {
+  margin-bottom: 1.35rem;
+}
+.experience-item strong {
+  display: block;
+  margin-bottom: 0.2rem;
+}
+.experience-item .years {
+  color: #666;
+  font-size: 0.9rem;
+}
+.experience-item .where {
+  color: #666;
+  font-size: 0.88rem;
+  display: block;
+  margin-bottom: 0.35rem;
+}
+.experience-item p {
+  margin: 0 0 0.5rem 0;
+}
+.experience-item ul {
+  margin: 0 0 0.25rem 0;
+  padding-left: 1.2rem;
+  font-size: 0.95rem;
+}
+.experience-item ul li {
+  margin-bottom: 0.35rem;
+}
+ul.links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+ul.links li {
+  margin-bottom: 0.5rem;
+}
+ol.links {
+  margin: 0 0 1rem 0;
+  padding-left: 1.35rem;
+}
+ol.links li {
+  margin-bottom: 0.5rem;
+}
+#building .building-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.65rem;
+  margin-top: 1.25rem;
+  padding: 0.85rem 1rem;
+  background: #f7f7f5;
+  border: 1px solid #e8e8e4;
+  border-radius: 4px;
+  font-size: 0.98rem;
+}
+#building .building-cta-button {
+  flex-shrink: 0;
+}
+
+#public-repositories p.intro,
+#writings p.intro,
+#hackathon-wins p.intro {
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: 0.75rem;
+}
+#public-repositories h3.repo-sub {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 1.75rem 0 0.45rem 0;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid #e5e5e5;
+  color: #333;
+  letter-spacing: 0.01em;
+}
+#public-repositories h3.repo-sub:first-of-type {
+  margin-top: 1.1rem;
+}
+#public-repositories ul.links {
+  margin-bottom: 0.25rem;
+}
+#skills h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.45rem 0;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid #e5e5e5;
+  color: #333;
+  letter-spacing: 0.01em;
+}
+#skills h3:first-of-type {
+  margin-top: 0.35rem;
+}
+#skills ul {
+  margin: 0 0 1rem 0;
+  padding-left: 1.35rem;
+}
+#skills ul li {
+  margin-bottom: 0.35rem;
+}
+
+#education ul,
+#incubators-accelerators ul,
+#talks-presentations ul,
+#hackathon-wins ul {
+  margin: 0 0 1rem 0;
+  padding-left: 1.35rem;
+}
+#education li,
+#incubators-accelerators li,
+#talks-presentations li,
+#hackathon-wins li {
+  margin-bottom: 0.35rem;
+}
+.meta {
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: 3rem;
+}

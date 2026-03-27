@@ -1,0 +1,9 @@
+{
+  "name": "boardyai",
+  "private": true,
+  "workspaces": ["packages/*"],
+  "scripts": {
+    "build": "npm run build -w boardy-intro-react",
+    "dev:demo": "npm run build -w boardy-intro-react && npm run dev -w boardy-intro-demo"
+  }
+}
