@@ -7,6 +7,163 @@ import { SplashBanner } from '../SplashBanner'
 import '../site.css'
 import '../styles/home-shell.css'
 
+const SKILL_CLOUD: { category: string; pills: string[] }[] = [
+  {
+    category: 'Human languages',
+    pills: ['English', 'Japanese'],
+  },
+  {
+    category: 'Programming languages',
+    pills: [
+      'Python',
+      'TypeScript / JavaScript',
+      'Rust',
+      'Solidity',
+      'Cairo',
+      'Move',
+      'SQL',
+      'C',
+      'C++',
+      'C#',
+      'Lua',
+      'Prolog',
+      'Lisp',
+      'PHP',
+      'Ruby',
+      'Java',
+    ],
+  },
+  {
+    category: 'Web frameworks',
+    pills: ['React', 'Next.js', 'Node.js', 'Flask / FastAPI', 'Django', 'Ruby on Rails'],
+  },
+  {
+    category: 'AI / ML',
+    pills: ['PyTorch', 'JAX', 'TensorFlow', 'scikit-learn', 'Hugging Face Transformers'],
+  },
+  {
+    category: 'Agentic frameworks',
+    pills: [
+      'LangChain',
+      'LangGraph',
+      'LangFuse',
+      'AutoGPT',
+      'OpenAgents',
+      'AVB',
+      'ElizaOS',
+      'DayDreams',
+    ],
+  },
+  {
+    category: 'Game engines',
+    pills: ['Unity', 'Three.js', 'Babylon.js'],
+  },
+  {
+    category: 'Blockchain',
+    pills: [
+      'Solidity',
+      'Cairo',
+      'Move',
+      'Hardhat',
+      'Foundry',
+      'Forge',
+      'Anvil',
+      'Circom',
+      'Noir',
+      'zk-SNARKs',
+      'zk-STARKs',
+      'ZK-rollups',
+      'Slither',
+      'Aderyn',
+      'Echidna',
+      'Medusa',
+      'OpenZeppelin Contracts',
+      'ERC standards',
+      'wagmi',
+      'viem',
+      'ethers.js',
+      'CDP',
+      'Alchemy',
+      'Infura',
+      'The Graph',
+      'Tenderly',
+      'EVM interoperability (EIL)',
+      'Wire Network',
+      'Chainlink',
+    ],
+  },
+  {
+    category: 'DevTools & security',
+    pills: [
+      'VS Code + Vim',
+      'Cursor',
+      'Claude Code',
+      'Codex',
+      'Foundry',
+      'Hardhat',
+      'Slither',
+      'Aderyn',
+      'Echidna',
+      'Medusa',
+      'Tenderly',
+      'OpenZeppelin',
+      'Defender',
+      'Solhint',
+      'Git',
+      'GitOps',
+    ],
+  },
+  {
+    category: 'DevOps',
+    pills: [
+      'Linux',
+      'Windows',
+      'macOS',
+      'Git',
+      'Docker',
+      'Kubernetes',
+      'Terraform',
+      'GitHub Actions',
+      'Jenkins',
+      'Ansible',
+      'Prometheus',
+      'Grafana',
+      'OpenTelemetry',
+    ],
+  },
+  {
+    category: 'AWS',
+    pills: [
+      'EC2',
+      'ELB · Multi-AZ · Auto Scaling',
+      'Lambda',
+      'Bedrock',
+      'Guardrails',
+      'SageMaker',
+    ],
+  },
+  {
+    category: 'Security & compliance',
+    pills: [
+      'PCI/DSS',
+      'Zero Trust · IAM hardening',
+      'DevSecOps · policy-as-code',
+      'OWASP LLM Top 10',
+      'Cryptography · blockchain · ZKP',
+      'Secure smart contracts · invariant testing',
+    ],
+  },
+  {
+    category: 'Cross-cutting',
+    pills: [
+      'Full-stack Web3 · contracts · frontend · backend',
+      'AI-augmented workflows · Cursor · Claude',
+      'Hybrid cloud · on-prem · multi-OS',
+      'High availability · production reliability',
+    ],
+  },
+]
+
 function SkillsSection() {
   return (
     <section
@@ -18,198 +175,30 @@ function SkillsSection() {
         <p className="home-section__kicker">Capabilities</p>
         <h2 id="skills-heading">Skills</h2>
         <p className="home-section__lede">
-          Expand a category for the full list — compact by default so the page stays
-          easy to scan.
+          Tag cloud by area — scan quickly or read a cluster in depth.
         </p>
-        <div className="home-skills-acc">
-          <details className="home-skill-panel">
-            <summary>Human Languages</summary>
-            <div className="home-skill-panel__body">
-              <ul>
-                <li>English</li>
-                <li>Japanese</li>
+        <div className="home-skills-cloud">
+          {SKILL_CLOUD.map(({ category, pills }, i) => (
+            <div
+              key={category}
+              className="home-skills-cloud__group"
+              data-cloud-tone={i % 3}
+            >
+              <p className="home-skills-cloud__label" id={`skills-cloud-${i}`}>
+                {category}
+              </p>
+              <ul
+                className="home-skills-cloud__pills"
+                aria-labelledby={`skills-cloud-${i}`}
+              >
+                {pills.map((label) => (
+                  <li key={`${category}-${label}`}>
+                    <span className="home-skill-pill">{label}</span>
+                  </li>
+                ))}
               </ul>
             </div>
-          </details>
-          <details className="home-skill-panel">
-            <summary>Programming Languages</summary>
-            <div className="home-skill-panel__body">
-              <ul>
-                <li>Python</li>
-                <li>TypeScript / JavaScript</li>
-                <li>Rust</li>
-                <li>Solidity</li>
-                <li>Cairo</li>
-                <li>Move</li>
-                <li>SQL</li>
-                <li>C</li>
-                <li>C++</li>
-                <li>C#</li>
-                <li>Lua</li>
-                <li>Prolog</li>
-                <li>Lisp</li>
-                <li>PHP</li>
-                <li>Ruby</li>
-                <li>Java</li>
-              </ul>
-            </div>
-          </details>
-          <details className="home-skill-panel">
-            <summary>Web Frameworks</summary>
-            <div className="home-skill-panel__body">
-              <ul>
-                <li>React</li>
-                <li>Next.js</li>
-                <li>Node.js</li>
-                <li>Flask / FastAPI</li>
-                <li>Django</li>
-                <li>Ruby on Rails</li>
-              </ul>
-            </div>
-          </details>
-          <details className="home-skill-panel">
-            <summary>AI/ML Frameworks</summary>
-            <div className="home-skill-panel__body">
-              <ul>
-                <li>PyTorch</li>
-                <li>JAX</li>
-                <li>TensorFlow</li>
-                <li>scikit-learn</li>
-                <li>Hugging Face Transformers</li>
-              </ul>
-            </div>
-          </details>
-          <details className="home-skill-panel">
-            <summary>Agentic Frameworks</summary>
-            <div className="home-skill-panel__body">
-              <ul>
-                <li>LangChain</li>
-                <li>LangGraph</li>
-                <li>LangFuse</li>
-                <li>AutoGPT</li>
-                <li>OpenAgents</li>
-                <li>AVB</li>
-                <li>ElizaOS</li>
-                <li>DayDreams</li>
-              </ul>
-            </div>
-          </details>
-          <details className="home-skill-panel">
-            <summary>Game Frameworks</summary>
-            <div className="home-skill-panel__body">
-              <ul>
-                <li>Unity</li>
-                <li>Three.js</li>
-                <li>Babylon.js</li>
-              </ul>
-            </div>
-          </details>
-          <details className="home-skill-panel">
-            <summary>Blockchain Development</summary>
-            <div className="home-skill-panel__body">
-              <ul>
-                <li>
-                  <strong>Smart Contract Languages</strong>: Solidity, Cairo, Move
-                </li>
-                <li>
-                  <strong>Frameworks &amp; Tooling</strong>: Hardhat, Foundry, Forge,
-                  Anvil
-                </li>
-                <li>
-                  <strong>ZK / Zero-Knowledge Proofs</strong>: Circom, Noir, zk-SNARKs,
-                  zk-STARKs, ZK-rollups
-                </li>
-                <li>
-                  <strong>Security &amp; Auditing</strong>: Slither, Aderyn, Echidna,
-                  Medusa
-                </li>
-                <li>
-                  <strong>Libraries &amp; Standards</strong>: OpenZeppelin Contracts, ERC
-                  standards
-                </li>
-                <li>
-                  <strong>Frontend Integration</strong>: wagmi, viem, ethers.js
-                </li>
-                <li>
-                  <strong>Infrastructure</strong>: CDP, Alchemy, Infura, The Graph
-                </li>
-                <li>
-                  <strong>Debugging &amp; Simulation</strong>: Tenderly
-                </li>
-                <li>
-                  <strong>Cross-Chain</strong>: EVM interoperability (EIL), Wire Network,
-                  Chainlink
-                </li>
-              </ul>
-            </div>
-          </details>
-          <details className="home-skill-panel">
-            <summary>DevTools &amp; Security</summary>
-            <div className="home-skill-panel__body">
-              <ul>
-                <li>VS Code + Vim</li>
-                <li>Cursor</li>
-                <li>Claude Code, Codex</li>
-                <li>Foundry, Hardhat</li>
-                <li>Slither, Aderyn</li>
-                <li>Echidna, Medusa</li>
-                <li>Tenderly</li>
-                <li>OpenZeppelin, Defender</li>
-                <li>Solhint</li>
-                <li>Git, GitOps</li>
-              </ul>
-            </div>
-          </details>
-          <details className="home-skill-panel">
-            <summary>DevOps</summary>
-            <div className="home-skill-panel__body">
-              <ul>
-                <li>Linux, Windows, macOS</li>
-                <li>Git</li>
-                <li>Docker, Kubernetes</li>
-                <li>Terraform</li>
-                <li>GitHub Actions, Jenkins</li>
-                <li>Ansible</li>
-                <li>Prometheus, Grafana, OpenTelemetry</li>
-              </ul>
-            </div>
-          </details>
-          <details className="home-skill-panel">
-            <summary>Amazon Web Services (AWS)</summary>
-            <div className="home-skill-panel__body">
-              <ul>
-                <li>EC2</li>
-                <li>ELB, Multi-AZ, Auto Scaling</li>
-                <li>Lambda</li>
-                <li>Bedrock, Guardrails</li>
-                <li>SageMaker</li>
-              </ul>
-            </div>
-          </details>
-          <details className="home-skill-panel">
-            <summary>Security &amp; Compliance</summary>
-            <div className="home-skill-panel__body">
-              <ul>
-                <li>PCI/DSS</li>
-                <li>Zero Trust, IAM hardening</li>
-                <li>DevSecOps, policy-as-code</li>
-                <li>OWASP LLM Top 10</li>
-                <li>Cryptography, blockchain &amp; ZKP</li>
-                <li>Secure smart contract patterns, invariant testing</li>
-              </ul>
-            </div>
-          </details>
-          <details className="home-skill-panel">
-            <summary>Cross-Cutting</summary>
-            <div className="home-skill-panel__body">
-              <ul>
-                <li>Full-stack Web3: contracts, frontend, backend</li>
-                <li>AI-augmented workflows, Cursor, Claude</li>
-                <li>Hybrid cloud, on-prem, multi-OS</li>
-                <li>High availability, production reliability</li>
-              </ul>
-            </div>
-          </details>
+          ))}
         </div>
       </div>
     </section>
@@ -823,29 +812,13 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section
-          id="media-kit"
-          className="home-section"
-          aria-labelledby="media-heading"
-        >
+        <section id="media" className="home-section" aria-labelledby="media-heading">
           <div className="home-main__prose">
-            <p className="home-section__kicker">Assets</p>
-            <h2 id="media-heading">Press &amp; media (placeholder)</h2>
-            <div className="home-placeholder" role="note">
-              <p>
-                Placeholder: headshots, one-sheet PDF, boilerplate bio, and logo pack
-                will live here.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section id="writings" className="home-section" aria-labelledby="writings-heading">
-          <div className="home-main__prose">
-            <p className="home-section__kicker">Writing</p>
-            <h2 id="writings-heading">Writings</h2>
+            <p className="home-section__kicker">Media</p>
+            <h2 id="media-heading">Writings</h2>
             <p className="intro">
-              Selected articles from{' '}
+              Video and other formats will show up here over time. For now, selected
+              articles from{' '}
               <a href="https://blog.cotten.io">blog.cotten.io</a> (Cotten.IO on
               Medium). <a href="https://blog.cotten.io/all">Full archive</a>.
             </p>

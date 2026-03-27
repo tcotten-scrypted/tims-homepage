@@ -1,13 +1,42 @@
-const PRIMARY_NAV: { href: string; label: string }[] = [
-  { href: '#home-intro', label: 'About' },
-  { href: '#thesis', label: 'Thesis' },
-  { href: '#building', label: 'Building' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#research-contributions', label: 'Research' },
-  { href: '#public-repositories', label: 'Repos' },
-  { href: '#work-experience', label: 'Experience' },
-  { href: '#writings', label: 'Writings' },
+import { useCallback, useEffect, useId, useRef, useState } from 'react'
+import type { LucideIcon } from 'lucide-react'
+import {
+  ArrowUpToLine,
+  BookOpen,
+  Briefcase,
+  Building2,
+  FlaskConical,
+  FolderGit2,
+  GraduationCap,
+  Layers,
+  Lightbulb,
+  Mic,
+  Rocket,
+  Trophy,
+  UserRound,
+} from 'lucide-react'
+
+/** Order matches `HomePage` main column top → bottom (after splash). */
+const SECTION_NAV: { href: string; label: string; icon: LucideIcon }[] = [
+  { href: '#home-intro', label: 'About', icon: UserRound },
+  { href: '#thesis', label: 'Thesis', icon: Lightbulb },
+  { href: '#building', label: 'Building', icon: Rocket },
+  { href: '#skills', label: 'Skills', icon: Layers },
+  { href: '#hackathon-wins', label: 'Hackathons', icon: Trophy },
+  { href: '#research-contributions', label: 'Research', icon: FlaskConical },
+  { href: '#public-repositories', label: 'Repos', icon: FolderGit2 },
+  { href: '#work-experience', label: 'Experience', icon: Briefcase },
+  { href: '#education', label: 'Education', icon: GraduationCap },
+  { href: '#incubators-accelerators', label: 'Programs', icon: Building2 },
+  { href: '#talks-presentations', label: 'Talks', icon: Mic },
+  { href: '#media', label: 'Media', icon: BookOpen },
 ]
+
+const TOP_ITEM = {
+  href: '#top',
+  label: 'Top of page',
+  icon: ArrowUpToLine,
+} as const
 
 function IconSpark() {
   return (
@@ -27,28 +56,133 @@ function IconMail() {
   )
 }
 
+function IconChevron({ open }: { open: boolean }) {
+  return (
+    <svg
+      className={`home-nav__chevron${open ? ' home-nav__chevron--open' : ''}`}
+      width="12"
+      height="12"
+      viewBox="0 0 12 12"
+      fill="none"
+      aria-hidden
+    >
+      <path
+        d="M3 4.5 6 7.5 9 4.5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+function NavIcon({ icon: Icon, compact }: { icon: LucideIcon; compact?: boolean }) {
+  return (
+    <span className="home-nav__icon-slot" aria-hidden>
+      <Icon className="home-nav__lucide" size={compact ? 15 : 17} strokeWidth={2} />
+    </span>
+  )
+}
+
 export function HomeNav() {
+  const [open, setOpen] = useState(false)
+  const wrapRef = useRef<HTMLDivElement>(null)
+  const triggerRef = useRef<HTMLButtonElement>(null)
+  const menuId = useId()
+
+  const close = useCallback(() => setOpen(false), [])
+  const toggle = useCallback(() => setOpen((v) => !v), [])
+
+  useEffect(() => {
+    if (!open) return
+
+    const onDocMouseDown = (e: MouseEvent) => {
+      const el = wrapRef.current
+      if (el && !el.contains(e.target as Node)) close()
+    }
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        close()
+        triggerRef.current?.focus()
+      }
+    }
+
+    document.addEventListener('mousedown', onDocMouseDown)
+    document.addEventListener('keydown', onKeyDown)
+    return () => {
+      document.removeEventListener('mousedown', onDocMouseDown)
+      document.removeEventListener('keydown', onKeyDown)
+    }
+  }, [open, close])
+
   return (
     <header className="home-nav" role="banner">
       <div className="home-nav__inner">
-        <a className="home-nav__brand" href="#top" aria-label="Top of page">
-          <span className="home-nav__mark" aria-hidden>
-            <svg width="20" height="20" viewBox="0 0 32 32" fill="none">
-              <path
-                d="M 22.5 9 C 16.5 4.5 7 6.5 5.5 14 C 4 21.5 12.5 27.5 22.5 23"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.85"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </span>
-        </a>
+        <div className="home-nav__brand-wrap" ref={wrapRef}>
+          <button
+            ref={triggerRef}
+            type="button"
+            className={`home-nav__brand-trigger${open ? ' is-open' : ''}`}
+            aria-expanded={open}
+            aria-haspopup="true"
+            aria-controls={menuId}
+            onClick={toggle}
+          >
+            <span className="home-nav__mark" aria-hidden>
+              <svg width="20" height="20" viewBox="0 0 32 32" fill="none">
+                <path
+                  d="M 22.5 9 C 16.5 4.5 7 6.5 5.5 14 C 4 21.5 12.5 27.5 22.5 23"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.85"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </span>
+            <IconChevron open={open} />
+            <span className="home-nav__brand-trigger-label">Section menu</span>
+          </button>
+
+          <div
+            id={menuId}
+            className={`home-nav__dropdown${open ? ' is-open' : ''}`}
+            role="region"
+            aria-label="Shortcuts on this page"
+            aria-hidden={!open}
+          >
+            <p className="home-nav__dropdown-kicker">Jump to</p>
+            <ul className="home-nav__dropdown-list">
+              <li>
+                <a
+                  href={TOP_ITEM.href}
+                  className="home-nav__dropdown-link home-nav__dropdown-link--top"
+                  onClick={close}
+                >
+                  <NavIcon icon={TOP_ITEM.icon} />
+                  <span className="home-nav__dropdown-text">{TOP_ITEM.label}</span>
+                </a>
+              </li>
+              <li className="home-nav__dropdown-sep" aria-hidden="true" />
+              {SECTION_NAV.map(({ href, label, icon }) => (
+                <li key={href}>
+                  <a href={href} className="home-nav__dropdown-link" onClick={close}>
+                    <NavIcon icon={icon} />
+                    <span className="home-nav__dropdown-text">{label}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
         <nav className="home-nav__links" aria-label="Page sections">
-          {PRIMARY_NAV.map(({ href, label }) => (
+          {SECTION_NAV.map(({ href, label, icon }) => (
             <a key={href} href={href}>
-              {label}
+              <NavIcon icon={icon} compact />
+              <span>{label}</span>
             </a>
           ))}
         </nav>

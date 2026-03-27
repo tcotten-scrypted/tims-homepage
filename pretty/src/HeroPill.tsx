@@ -13,9 +13,7 @@ export function HeroPill() {
       />
       <header className="hero-pill__header">
         <h1 className="hero-pill__title">Tim Cotten</h1>
-        <p className="hero-pill__tagline">
-          <strong>AI engineer</strong> turned <strong>Founder</strong>
-        </p>
+        <p className="hero-pill__tagline">Builds Autonomous AI Agents</p>
       </header>
     </div>
   )
