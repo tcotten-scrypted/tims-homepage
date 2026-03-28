@@ -110,7 +110,7 @@ export function DemoPalette1Page() {
         <h2 className="demo-palette-1__section-title">Scrim</h2>
         <div className="demo-palette-1__scrim-demo">
           <div className="demo-palette-1__scrim-demo-bg">
-            Content underneath — scrim + blur on top.
+            Content underneath: scrim + blur on top.
           </div>
           <div className="demo-palette-1__scrim-layer">
             <div className="demo-palette-1__scrim-card">Modal-style panel</div>

@@ -1,4 +1,4 @@
-/* Hero UX playground — toggles via [data-*] on .hero-ux-playground */
+/* Hero UX playground: toggles via [data-*] on .hero-ux-playground */
 
 .hero-ux-playground {
   --ux-accent: rgba(255, 255, 255, 0.92);
@@ -312,7 +312,7 @@
     0 4px 12px rgba(10, 30, 50, 0.35);
 }
 
-/* Combine elevation + rim: last block wins — use one rule when both */
+/* Combine elevation + rim: last block wins; use one rule when both */
 .hero-ux-playground[data-card-elevation='true'][data-glow-rim='true'] .hero-ux-card {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.12),

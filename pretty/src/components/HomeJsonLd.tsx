@@ -1,12 +1,16 @@
 import { useEffect } from 'react'
 
+import { SITE_ORIGIN, siteMeta } from '../seo/siteMeta'
+
 const PERSON_ID = 'https://www.cotten.io/#person'
 
-/** Structured data for agents & search; canonical URL from window at runtime. */
+/** Structured data for search; canonical URL from window at runtime. */
 export function HomeJsonLd() {
   useEffect(() => {
-    const origin = typeof window !== 'undefined' ? window.location.origin : 'https://www.cotten.io'
+    const origin = typeof window !== 'undefined' ? window.location.origin : SITE_ORIGIN
     const pageUrl = `${origin}/`
+    const profileImage = `${origin}/profile_avatar.png`
+    const ogImage = `${origin}/og-image.jpg`
 
     const graph = {
       '@context': 'https://schema.org',
@@ -15,7 +19,8 @@ export function HomeJsonLd() {
           '@type': 'WebSite',
           '@id': `${origin}/#website`,
           url: origin,
-          name: "Tim Cotten",
+          name: siteMeta.ogSiteName,
+          description: siteMeta.metaDescription,
           publisher: { '@id': PERSON_ID },
           inLanguage: 'en-US',
         },
@@ -23,16 +28,26 @@ export function HomeJsonLd() {
           '@type': 'WebPage',
           '@id': `${pageUrl}#webpage`,
           url: pageUrl,
-          name: 'Tim Cotten — AI founder, autonomous agents, on-chain systems',
+          name: siteMeta.ogTitle,
+          description: siteMeta.metaDescription,
           isPartOf: { '@id': `${origin}/#website` },
           about: { '@id': PERSON_ID },
           inLanguage: 'en-US',
+          primaryImageOfPage: {
+            '@type': 'ImageObject',
+            url: ogImage,
+            width: 1200,
+            height: 630,
+            caption: siteMeta.ogImageAlt,
+          },
         },
         {
           '@type': 'Person',
           '@id': PERSON_ID,
           name: 'Tim Cotten',
           url: pageUrl,
+          image: profileImage,
+          description: siteMeta.metaDescription,
           jobTitle: 'Founder & CEO',
           email: 'mailto:tim@cotten.io',
           sameAs: [

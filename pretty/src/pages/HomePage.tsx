@@ -360,6 +360,10 @@ export default function HomePage() {
                   similar to those we faced building the first generation of Massively
                   Multiplayer Online Role Playing Games (MMORPGs).{' '}
                 </p>
+                <p>
+                  World Models, whether JEPA-based physical analogs or neuro-symbolic like
+                  Stratus X1, are the key to unlocking agentic intelligence.
+                </p>
               </article>
               <article className="home-thesis-card" role="listitem">
                 <span className="home-thesis-card__idx" aria-hidden>
@@ -374,7 +378,8 @@ export default function HomePage() {
                 </p>
                 <p>
                   AGI is most likely to be achieved as an emergent property of many
-                  coordinating agents than as one monolithic system.
+                  coordinating agents under capitalistic constraints, than as one
+                  monolithic system.
                 </p>
               </article>
               <article className="home-thesis-card" role="listitem">
@@ -444,7 +449,7 @@ export default function HomePage() {
               <p className="building-cta">
                 Raising our seed round. Get my attention via a16z, PTC, or Boardy:{' '}
                 <BoardyIntroButton
-                  introMessage="Hi Boardy — I'd like to connect with Tim Cotten (Scrypted) about what I'm building. Happy to share context so you can route this the right way."
+                  introMessage="Hi Boardy, I'd like to connect with Tim Cotten (Scrypted) about what I'm building. Happy to share context so you can route this the right way."
                   label="Get an intro from Boardy"
                   className="building-cta-button"
                 />
@@ -464,7 +469,7 @@ export default function HomePage() {
             <p className="home-section__kicker">Wins</p>
             <h2 id="hackathon-heading">Hackathon Wins</h2>
             <p className="intro">
-              Highlights from recent builds—mostly agent payments, on-chain games, and
+              Highlights from recent builds, mostly agent payments, on-chain games, and
               AVBs.
             </p>
             <ul className="home-card-grid home-card-grid--2">
@@ -527,8 +532,8 @@ export default function HomePage() {
                   <p>
                     <a href="https://blog.cotten.io/autonomous-virtual-beings-aaef7cbbe5de">
                       Autonomous Virtual Beings (AVBs)
-                    </a>{' '}
-                    — A foundational thesis defining self-owning digital lifeforms that
+                    </a>
+                    : A foundational thesis defining self-owning digital lifeforms that
                     blend game AI, crypto primitives, and agentic autonomy. This
                     framework underpins much of today&apos;s AVB ecosystem and the design
                     of the Scrypted Network.
@@ -541,8 +546,8 @@ export default function HomePage() {
                   <p>
                     <a href="https://github.com/tcotten-scrypted/persistent-stochastic-ablation-mlp/blob/23a02dc86592a52848ba1491bc0b5d4dde9d3168/paper/pdf/Persistent%20Stochastic%20Ablation%20-%20Paper%201%20-%20SimpleMLP.pdf">
                       Persistent Stochastic Ablation (PSA) for MLPs
-                    </a>{' '}
-                    — A novel neural network training method that combines pruning,
+                    </a>
+                    : A novel neural network training method that combines pruning,
                     dropout, and game-inspired &ldquo;save scumming&rdquo; techniques to
                     evolve more robust and resilient models. Explored through both theory
                     and open-source code.
@@ -557,8 +562,8 @@ export default function HomePage() {
                   <p>
                     <a href="https://blog.cotten.io/the-commit-reveal-pairwise-comparison-protocol-crpc-e1434fff94c4">
                       Commit-Reveal Pairwise Comparison Protocol (CRPC)
-                    </a>{' '}
-                    — A decentralized consensus primitive designed for non-deterministic
+                    </a>
+                    : A decentralized consensus primitive designed for non-deterministic
                     workloads, enabling reliable coordination and reputation mechanisms in
                     agent-to-agent systems.
                   </p>
@@ -586,9 +591,9 @@ export default function HomePage() {
               <li>
                 <a href="https://github.com/tcotten-scrypted/boardyai-cta">
                   tcotten-scrypted/boardyai-cta
-                </a>{' '}
-                — React WhatsApp button for Boardy-mediated intros on your site.
-                Unofficial community project—not affiliated with Boardy.
+                </a>
+                : React WhatsApp button for Boardy-mediated intros on your site.
+                Unofficial community project, not affiliated with Boardy.
               </li>
             </ul>
 
@@ -597,22 +602,22 @@ export default function HomePage() {
               <li>
                 <a href="https://github.com/tcotten-scrypted/persistent-stochastic-ablation-mlp">
                   tcotten-scrypted/persistent-stochastic-ablation-mlp
-                </a>{' '}
-                — Persistent Stochastic Ablation (PSA) for SimpleMLP: training code,
+                </a>
+                : Persistent Stochastic Ablation (PSA) for SimpleMLP: training code,
                 reproduction tooling, and paper-aligned experiments exploring robust
                 neural network evolution.
               </li>
               <li>
                 <a href="https://github.com/tcotten-scrypted/persistent-stochastic-ablation-resmlp">
                   tcotten-scrypted/persistent-stochastic-ablation-resmlp
-                </a>{' '}
-                — PSA extended to a ResMLP-style architecture with skip connections.
+                </a>
+                : PSA extended to a ResMLP-style architecture with skip connections.
               </li>
               <li>
                 <a href="https://github.com/tcotten-scrypted/autonomous-virtual-beings">
                   tcotten-scrypted/autonomous-virtual-beings
-                </a>{' '}
-                — Autonomous Virtual Beings (AVB) thesis text and machine-readable
+                </a>
+                : Autonomous Virtual Beings (AVB) thesis text and machine-readable
                 material on agents, decentralization, and autonomy.
               </li>
             </ul>
@@ -622,8 +627,8 @@ export default function HomePage() {
               <li>
                 <a href="https://github.com/scryptedai/differential-datalog">
                   scryptedai/differential-datalog
-                </a>{' '}
-                — DDlog fork with Rust 1.93 upgrade, test-suite fixes, and pinned
+                </a>
+                : DDlog fork with Rust 1.93 upgrade, test-suite fixes, and pinned
                 improvements to <code>scryptedai/differential-dataflow</code>, and
                 resolved their longstanding merge-batcher OOM and kernel panic bugs.
               </li>
@@ -634,24 +639,24 @@ export default function HomePage() {
               <li>
                 <a href="https://github.com/scryptedai/x402-hpke">
                   scryptedai/x402-hpke
-                </a>{' '}
-                — HPKE envelope and unified transport for secure x402 payments (Node
-                + Python, tests, spec docs). Hackathon winner — Coinbase Code NYC
+                </a>
+                : HPKE envelope and unified transport for secure x402 payments (Node
+                + Python, tests, spec docs). Hackathon winner, Coinbase Code NYC
                 (end-to-end encrypted agent payments).
               </li>
               <li>
                 <a href="https://github.com/scryptedai/x402autopay">
                   scryptedai/x402autopay
-                </a>{' '}
-                — Chromium extension for HTTP 402 handling, policy-aware autopay,
-                and EIP-3009 USDC flows. Hackathon winner — Polygon Prize at
+                </a>
+                : Chromium extension for HTTP 402 handling, policy-aware autopay,
+                and EIP-3009 USDC flows. Hackathon winner, Polygon Prize at
                 ETHGlobal.
               </li>
               <li>
                 <a href="https://github.com/scryptedai/hackathon">
                   scryptedai/hackathon
-                </a>{' '}
-                — Miscellaneous winning hackathon entries, including CDP SQL
+                </a>
+                : Miscellaneous winning hackathon entries, including CDP SQL
                 integration with Chibi Clash and other agent/gaming prototypes.
               </li>
             </ul>
@@ -661,45 +666,45 @@ export default function HomePage() {
               <li>
                 <a href="https://github.com/tcotten-scrypted/network-simulator-random-assignment">
                   tcotten-scrypted/network-simulator-random-assignment
-                </a>{' '}
-                — Simulator for distributed load under random task-to-node
+                </a>
+                : Simulator for distributed load under random task-to-node
                 assignment.
               </li>
               <li>
                 <a href="https://github.com/tcotten-scrypted/tian-gaussian-distribution-simulator">
                   tcotten-scrypted/tian-gaussian-distribution-simulator
-                </a>{' '}
-                — Keccak-256–driven bitfield experiments and Gaussian-like sampling
+                </a>
+                : Keccak-256-driven bitfield experiments and Gaussian-like sampling
                 exploration.
               </li>
               <li>
                 <a href="https://github.com/scryptedinc/piecewisegpt">
                   scryptedinc/piecewisegpt
-                </a>{' '}
-                — General-purpose semantic chunking library designed for long-context
+                </a>
+                : General-purpose semantic chunking library designed for long-context
                 LLM workflows over small context windows.
               </li>
               <li>
                 <a href="https://github.com/tcotten-scrypted/ts-aiagent-boilerplate">
                   tcotten-scrypted/ts-aiagent-boilerplate
-                </a>{' '}
-                — Boilerplate for Eliza-style agent extensions in TypeScript.
+                </a>
+                : Boilerplate for Eliza-style agent extensions in TypeScript.
               </li>
               <li>
-                <a href="https://github.com/scryptedinc/ffm">scryptedinc/ffm</a> —
-                Five Factor Model (OCEAN) as an object-oriented library.
+                <a href="https://github.com/scryptedinc/ffm">scryptedinc/ffm</a>
+                : Five Factor Model (OCEAN) as an object-oriented library.
               </li>
               <li>
                 <a href="https://github.com/tcotten-scrypted/ds-rith">
                   tcotten-scrypted/ds-rith
-                </a>{' '}
-                — Rodents in The Hood on Downstream game experiments.
+                </a>
+                : Rodents in The Hood on Downstream game experiments.
               </li>
               <li>
                 <a href="https://github.com/scryptedinc/babylonjs-boilerplate">
                   scryptedinc/babylonjs-boilerplate
-                </a>{' '}
-                — Babylon.js + Node/Webpack/VS starter project.
+                </a>
+                : Babylon.js + Node/Webpack/VS starter project.
               </li>
             </ul>
           </div>
@@ -732,7 +737,7 @@ export default function HomePage() {
               <span className="where">Fairfax, VA</span>
               <p>
                 Teach GMU&apos;s first <em>Generative AI in Game Development</em>{' '}
-                course — curriculum design and classroom delivery bridging modern ML
+                course: curriculum design and classroom delivery bridging modern ML
                 tooling with game production.
               </p>
             </div>
@@ -746,7 +751,7 @@ export default function HomePage() {
                 rails (PayPal, Apple Pay, Google Pay, digital assets) with
                 PCI/DSS-aligned security. Before GenAI went mainstream, applied
                 predictive modeling, forecasting, and optimization to operations and
-                growth—advanced address verification and mapping cut delivery failures
+                growth: advanced address verification and mapping cut delivery failures
                 roughly 45%; analytics, SEO, and funnel experiments drove large
                 conversion gains (e.g. ~260% lift for key customers) with improved CPC
                 efficiency.
@@ -799,7 +804,7 @@ export default function HomePage() {
               <p>
                 C++ and proprietary scripting across multiple titles. Built NPC AI
                 systems (speech and interaction libraries, simulation schedules,
-                graph-navigated cooperative behavior) — foundational experience for
+                graph-navigated cooperative behavior): foundational experience for
                 later live-ops and autonomous agent work.
               </p>
             </div>

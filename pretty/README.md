@@ -5,7 +5,7 @@ Tim’s personal site as a **Vite + React + TypeScript** app. The production bui
 ## Prerequisites
 
 - **Node.js** (see your environment; this project uses React 19 and Vite 8)
-- **AWS CLI v2** (for deploy only), configured with a **named profile** for the account that owns the site bucket—so your default `AWS_PROFILE` / `[default]` credentials can stay on another account
+- **AWS CLI v2** (for deploy only), configured with a **named profile** for the account that owns the site bucket, so your default `AWS_PROFILE` / `[default]` credentials can stay on another account
 
 ## Install
 
@@ -42,7 +42,7 @@ git clone https://github.com/tcotten-scrypted/boardyai-cta.git vendor/boardyai-c
 
 ### React 19 and Vite aliases
 
-The linked package may install **React 18** under its own `node_modules`. Mixing that with the app’s **React 19** produces elements React 19’s DOM runtime rejects (**[minified error #525](https://react.dev/errors/525)**—legacy `react.element` vs `react.transitional.element`).
+The linked package may install **React 18** under its own `node_modules`. Mixing that with the app’s **React 19** produces elements React 19’s DOM runtime rejects (**[minified error #525](https://react.dev/errors/525)**: legacy `react.element` vs `react.transitional.element`).
 
 `vite.config.ts` therefore **aliases** `react`, `react/jsx-runtime`, `react-dom`, and `react-dom/client` to this app’s `node_modules` and **dedupes** `react` / `react-dom` so the bundle uses a single React 19.
 
@@ -78,10 +78,10 @@ Deploy uses **`scripts/deploy-s3.mjs`**, which:
 
 2. **`.env.deploy`** is **gitignored**. Set:
 
-   - **`DEPLOY_AWS_PROFILE`** — AWS CLI profile name for this site’s account (required by the script if neither this nor `AWS_PROFILE` is set).
-   - **`DEPLOY_S3_BUCKET`** — bucket name only (no `s3://`).
-   - **`DEPLOY_S3_PREFIX`** — optional; leave empty for bucket root, or e.g. `site/` for a subfolder.
-   - **`DEPLOY_CLOUDFRONT_DISTRIBUTION_ID`** — optional; omit to skip invalidation.
+   - **`DEPLOY_AWS_PROFILE`**: AWS CLI profile name for this site’s account (required by the script if neither this nor `AWS_PROFILE` is set).
+   - **`DEPLOY_S3_BUCKET`**: bucket name only (no `s3://`).
+   - **`DEPLOY_S3_PREFIX`**: optional; leave empty for bucket root, or e.g. `site/` for a subfolder.
+   - **`DEPLOY_CLOUDFRONT_DISTRIBUTION_ID`**: optional; omit to skip invalidation.
 
    You can also export the same variables in your shell instead of using `.env.deploy`.
 
@@ -110,9 +110,9 @@ Requires **`aws`** on your `PATH` and a populated **`.env.deploy`** (or equivale
 
 ## Project layout
 
-- `src/App.tsx` — page content
-- `src/site.css` — layout and typography
-- `src/main.tsx` — React entry
-- `index.html` — Vite shell
-- `vendor/boardyai-cta/` — source for `boardy-intro-react` (build before relying on the package)
-- `scripts/deploy-s3.mjs` — deploy automation
+- `src/App.tsx`: page content
+- `src/site.css`: layout and typography
+- `src/main.tsx`: React entry
+- `index.html`: Vite shell
+- `vendor/boardyai-cta/`: source for `boardy-intro-react` (build before relying on the package)
+- `scripts/deploy-s3.mjs`: deploy automation

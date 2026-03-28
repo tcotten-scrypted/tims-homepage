@@ -67,21 +67,21 @@ const APP_CARDS: {
 }[] = [
   {
     title: 'Example dapp',
-    desc: 'Privacy-first portfolio and analytics — pattern after ethereum.org app cards.',
+    desc: 'Privacy-first portfolio and analytics: pattern after ethereum.org app cards.',
     hue: 'purple',
     pills: ['Productivity', 'Open source'],
     uid: 'a',
   },
   {
     title: 'Collectibles hub',
-    desc: 'Bookmarks for life events as on-chain memories — card + category chips.',
+    desc: 'Bookmarks for life events as on-chain memories: card + category chips.',
     hue: 'pink',
     pills: ['Collectibles', 'NFT'],
     uid: 'b',
   },
   {
     title: 'L2 explorer',
-    desc: 'Low fees, Ethereum security — teal accent like accent-c tokens.',
+    desc: 'Low fees, Ethereum security: teal accent like accent-c tokens.',
     hue: 'teal',
     pills: ['Layer 2', 'DeFi'],
     uid: 'c',
@@ -98,13 +98,13 @@ export function Inspiration1Page() {
     <div className="inspiration-1">
       <div className="inspiration-1__debug-bar">
         <span>
-          Debug: ethereum.org visual reference (unofficial) — compare with{' '}
+          Debug: ethereum.org visual reference (unofficial): compare with{' '}
           <a href="https://ethereum.org/en/">ethereum.org</a>
         </span>
         <Link to="/">← cotten.io home</Link>
       </div>
 
-      {/* Site chrome — layout/IA similar to ethereum.org marketing shell */}
+      {/* Site chrome: layout/IA similar to ethereum.org marketing shell */}
       <header className="inspiration-1__site-nav">
         <a className="inspiration-1__brand" href="#inspiration-1-visual">
           <span className="inspiration-1__brand-mark" aria-hidden>
@@ -144,7 +144,7 @@ export function Inspiration1Page() {
             <h1 className="inspiration-1__hero-title">Welcome to Ethereum</h1>
             <p className="inspiration-1__hero-sub">
               Homepage-style hero: Inter, purple/blue radial wash, sticky glass nav, icon buttons, and CTA
-              tiles — approximates the public marketing layer of ethereum.org so you can judge spacing,
+              tiles; approximates the public marketing layer of ethereum.org so you can judge spacing,
               type scale, and component rhythm side-by-side with the live site.
             </p>
             <div className="inspiration-1__hero-actions">
@@ -202,7 +202,7 @@ export function Inspiration1Page() {
         </p>
         <h2 className="inspiration-1__section-title">What is Ethereum?</h2>
         <p className="inspiration-1__section-lede">
-          Section pattern: small uppercase label, large H2, muted body — same cadence as ethereum.org
+          Section pattern: small uppercase label, large H2, muted body; same cadence as ethereum.org
           content bands. Stats below mimic the homepage metric strip.
         </p>
         <div className="inspiration-1__stats">
@@ -231,7 +231,7 @@ export function Inspiration1Page() {
         </p>
         <h2 className="inspiration-1__section-title">Discover apps on Ethereum</h2>
         <p className="inspiration-1__section-lede">
-          Card grid with gradient header art + title + description + category pills (structure only —
+          Card grid with gradient header art + title + description + category pills (structure only;
           artwork is generic SVG, not ethereum.org illustrations).
         </p>
         <div className="inspiration-1__card-row">
@@ -278,7 +278,7 @@ export function Inspiration1Page() {
         <p>
           The <strong>visual mirror</strong> above uses the same rough ingredients as ethereum.org’s public
           marketing UI: Inter, purple primary, soft radial hero, sticky translucent nav, icon toolbar,
-          quad CTA tiles, stat band, and app cards — built with <strong>generic SVG</strong> (no EF
+          quad CTA tiles, stat band, and app cards, built with <strong>generic SVG</strong> (no EF
           trademarks or proprietary illustrations).
         </p>
 
@@ -313,23 +313,23 @@ export function Inspiration1Page() {
         <h3>Repository layout (simplified)</h3>
         <ul>
           <li>
-            <code>app/</code> — App Router entrypoints, API routes, layouts.
+            <code>app/</code>: App Router entrypoints, API routes, layouts.
           </li>
           <li>
-            <code>src/components/</code> — shared React building blocks.
+            <code>src/components/</code>: shared React building blocks.
           </li>
           <li>
-            <code>src/layouts/</code> — Docs, Tutorial, marketing shells.
+            <code>src/layouts/</code>: Docs, Tutorial, marketing shells.
           </li>
           <li>
-            <code>public/content/</code> — MD/MDX source.
+            <code>public/content/</code>: MD/MDX source.
           </li>
           <li>
-            <code>src/styles/</code> — <code>colors.css</code>, <code>semantic-tokens.css</code>,{' '}
+            <code>src/styles/</code>: <code>colors.css</code>, <code>semantic-tokens.css</code>,{' '}
             <code>global.css</code>.
           </li>
           <li>
-            <code>src/intl/</code> — locale JSON; Crowdin.
+            <code>src/intl/</code>: locale JSON; Crowdin.
           </li>
         </ul>
 
@@ -366,7 +366,7 @@ export function Inspiration1Page() {
         <h2 id="inspiration-1-type">Typography</h2>
         <p>
           Upstream uses <strong>Inter</strong> for body and headings; <strong>IBM Plex Mono</strong> for
-          code — mirrored here.
+          code, mirrored here.
         </p>
 
         <div className="inspiration-1__table-wrap">

@@ -62,7 +62,7 @@ The link target is `https://wa.me/<phone>?text=<encoded message>` (default phone
 | `textColor` | `#ffffff` | Label and icon color. |
 | `showWhatsAppIcon` | `true` | Show the chat glyph on the right. |
 | `boardyIconSrc` | Boardy profile image URL | Replace if you host your own asset (rights remain with Boardy). |
-| `className`, `style` | — | Passed through to the outer `<a>`. |
+| `className`, `style` | (n/a) | Passed through to the outer `<a>`. |
 
 ## Monorepo scripts
 

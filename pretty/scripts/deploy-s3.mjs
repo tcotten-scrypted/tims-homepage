@@ -8,13 +8,13 @@
  *   - File .env.deploy in this directory (KEY=value lines, # comments)
  *
  * Required:
- *   DEPLOY_S3_BUCKET   — bucket name (no s3:// prefix)
+ *   DEPLOY_S3_BUCKET: bucket name (no s3:// prefix)
  * Optional:
- *   DEPLOY_AWS_PROFILE — AWS CLI profile name (default: DEPLOY_AWS_PROFILE or AWS_PROFILE)
- *   AWS_PROFILE        — used if DEPLOY_AWS_PROFILE unset
- *   DEPLOY_S3_PREFIX   — key prefix inside bucket, e.g. "" or "site/" (no leading slash)
- *   DEPLOY_CLOUDFRONT_DISTRIBUTION_ID — required: create invalidation for /* after upload
- *   DEPLOY_SKIP_CLOUDFRONT=1 — skip CloudFront (S3-only / no distribution)
+ *   DEPLOY_AWS_PROFILE: AWS CLI profile name (default: DEPLOY_AWS_PROFILE or AWS_PROFILE)
+ *   AWS_PROFILE: used if DEPLOY_AWS_PROFILE unset
+ *   DEPLOY_S3_PREFIX: key prefix inside bucket, e.g. "" or "site/" (no leading slash)
+ *   DEPLOY_CLOUDFRONT_DISTRIBUTION_ID: required: create invalidation for /* after upload
+ *   DEPLOY_SKIP_CLOUDFRONT=1: skip CloudFront (S3-only / no distribution)
  */
 
 import { readFileSync, existsSync } from 'node:fs'
