@@ -102,7 +102,13 @@ if (!existsSync(distDir)) {
 
 console.log(`Deploying to ${s3Base} (profile: ${profile})`)
 
-// Long cache for fingerprinted assets; HTML should revalidate quickly.
+const longCache =
+  'public,max-age=31536000,immutable'
+const shortCache =
+  'public,max-age=86400,must-revalidate'
+
+// Long cache for fingerprinted assets only. Favicons / manifest / PWA icons must not be
+// immutable (same URL forever) or browsers and CDNs keep the wrong icon for months.
 aws([
   's3',
   'sync',
@@ -113,9 +119,55 @@ aws([
   profile,
   '--exclude',
   'index.html',
+  '--exclude',
+  'favicon.ico',
+  '--exclude',
+  'favicon.svg',
+  '--exclude',
+  'apple-touch-icon.png',
+  '--exclude',
+  'site.webmanifest',
+  '--exclude',
+  'icons/*',
   '--cache-control',
-  'public,max-age=31536000,immutable',
+  longCache,
 ])
+
+const shortCacheRootFiles = [
+  'favicon.ico',
+  'favicon.svg',
+  'apple-touch-icon.png',
+  'site.webmanifest',
+]
+for (const rel of shortCacheRootFiles) {
+  const local = path.join(distDir, rel)
+  if (!existsSync(local)) continue
+  aws([
+    's3',
+    'cp',
+    local,
+    `${s3Base}${rel}`,
+    '--profile',
+    profile,
+    '--cache-control',
+    shortCache,
+  ])
+}
+
+const distIcons = path.join(distDir, 'icons')
+if (existsSync(distIcons)) {
+  aws([
+    's3',
+    'sync',
+    distIcons,
+    `${s3Base}icons/`,
+    '--delete',
+    '--profile',
+    profile,
+    '--cache-control',
+    shortCache,
+  ])
+}
 
 aws([
   's3',

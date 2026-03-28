@@ -63,4 +63,16 @@ export default defineConfig({
       'react-dom/client': path.join(reactDomRoot, 'client.js'),
     },
   },
+  ssr: {
+    target: 'node',
+    // Bundle React + router into the SSR chunk so react-dom/server shares one dispatcher (no invalid hook call).
+    noExternal: [
+      'react',
+      'react-dom',
+      'react-router',
+      'react-router-dom',
+      'lucide-react',
+      'boardy-intro-react',
+    ],
+  },
 })

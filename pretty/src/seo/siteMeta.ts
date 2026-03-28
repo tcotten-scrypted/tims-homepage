@@ -1,6 +1,7 @@
 /**
  * Single source for HTML meta, Open Graph, Twitter, and JSON-LD copy.
  * Injected into index.html via Vite (see vite.config.ts); keep tokens in sync.
+ * Align `public/site.webmanifest` `short_name` / `description` / `name` with this file.
  */
 export const SITE_ORIGIN = 'https://www.cotten.io' as const
 
@@ -10,32 +11,43 @@ export const siteUrls = {
   profileImage: `${SITE_ORIGIN}/profile_avatar.png`,
 } as const
 
+/** PWA `name` (install prompt). */
+export const manifestName = 'Tim Cotten' as const
+
+/** PWA `short_name` (home screen label). */
+export const manifestShortName = "Tim Cotten's Home Page" as const
+
+/** Shared blurb: manifest `description`, meta description, OG/Twitter body, JSON-LD site/page/person. */
+export const siteSummary =
+  "Tim Cotten | Builds Autonomous AI Agents. Founder of Scrypted: a network for discovery, fuzzy verification, and attention auctions. Delula and Sidelines. Ex-EA, Ex-Mythic. ERC-8004, x402 contributor; adjunct at George Mason University." as const
+
 export const siteMeta = {
-  /** <title>: who he is + what he is building (search + tabs) */
-  htmlTitle: 'Tim Cotten | Scrypted Network & autonomous AI agents',
+  /** <title> / og:title (tab + share headline; matches siteSummary lead) */
+  htmlTitle: 'Tim Cotten | Builds Autonomous AI Agents',
 
-  /**
-   * Primary meta description (~150-160 chars). Thesis-forward, not a site map.
-   * Persona bar: investors want crisp "what"; peers want mechanisms; avoid generic superlatives.
-   */
-  metaDescription:
-    'Tim Cotten: Scrypted Network for autonomous AI agents (discovery & attention markets) and Delula. Former EA game AI; ERC-8004; adjunct, George Mason.',
+  /** Primary meta description */
+  metaDescription: siteSummary,
 
-  /** Open Graph / Twitter headline (share cards) */
-  ogTitle: 'Tim Cotten | Scrypted Network & autonomous AI agents',
+  /** Open Graph / Twitter headline */
+  ogTitle: 'Tim Cotten | Builds Autonomous AI Agents',
 
   /** og:site_name: site brand, not the page title */
   ogSiteName: 'cotten.io',
 
-  /**
-   * Open Graph / Twitter body: founder + product thesis for preview panes.
-   * Not "what is on this site"; concrete stack, credibility, teaching.
-   */
-  ogDescription:
-    'Founder of Scrypted, building the Scrypted Network: discovery, workflows, and attention markets for autonomous AI agents, with Delula as the live consumer surface on that stack. Former large-scale game AI at EA; ERC-8004 and related standards work; teaches Generative AI in Game Development at George Mason.',
+  /** Open Graph / Twitter body (same story as manifest) */
+  ogDescription: siteSummary,
 
   ogImageAlt:
-    'Tim Cotten on cotten.io: video banner with profile and “Builds Autonomous AI Agents” headline.',
+    'Tim Cotten builds autonomous AI agents; founder of Scrypted (discovery, fuzzy verification, attention auctions). Delula and Sidelines. Ex-EA, Ex-Mythic; ERC-8004 and x402; George Mason adjunct.',
+
+  /** WebSite + WebPage JSON-LD */
+  jsonLdSitePageDescription: siteSummary,
+
+  /** Person JSON-LD (same narrative) */
+  jsonLdPersonDescription: siteSummary,
+
+  /** Keep in sync with `site.webmanifest` `description` */
+  manifestDescription: siteSummary,
 
   robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
 
@@ -43,4 +55,18 @@ export const siteMeta = {
   ogLocale: 'en_US',
   twitterSite: '@CottenIO',
   twitterCreator: '@CottenIO',
+
+  knowsAbout: [
+    'Autonomous AI agents',
+    'Scrypted Network',
+    'Discovery',
+    'Fuzzy verification',
+    'Attention auctions',
+    'Delula',
+    'Sidelines',
+    'ERC-8004',
+    'x402',
+    'Game AI',
+    'George Mason University',
+  ] as const,
 } as const

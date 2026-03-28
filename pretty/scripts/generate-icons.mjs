@@ -1,16 +1,16 @@
 #!/usr/bin/env node
 /**
- * Generates favicons, PWA icons, maskable icons, and Open Graph art from source assets.
+ * Generates favicons, PWA icons, maskable icons, and Open Graph art.
  *
  * Inputs (in public/):
- *   - profile_avatar.png: square avatar (masked to a circle; optional accent ring)
+ *   - favicon.svg: C mark (rasterized for .ico, apple-touch, PWA sizes)
  *   - ref_for_socialgraph.png: wide hero reference → og-image.jpg (1200×630 cover crop)
  *
  * Outputs (in public/):
- *   - favicon.ico (16, 32, 48): ring variant for small-size clarity
- *   - apple-touch-icon.png (180×180)
- *   - icons/icon-192.png, icons/icon-512.png
- *   - icons/icon-maskable-512.png: safe-zone padding on solid background
+ *   - favicon.ico (16, 32, 48)
+ *   - apple-touch-icon.png (180×180, solid background for iOS)
+ *   - icons/icon-192.png, icons/icon-512.png (transparent)
+ *   - icons/icon-maskable-512.png: C on safe-zone padding
  *   - og-image.jpg
  *
  * Run from repo: npm run icons
@@ -28,53 +28,30 @@ const root = path.resolve(__dirname, '..')
 const publicDir = path.join(root, 'public')
 const iconsDir = path.join(publicDir, 'icons')
 
-const AVATAR = path.join(publicDir, 'profile_avatar.png')
+const FAVICON_SVG = path.join(publicDir, 'favicon.svg')
 const OG_SRC = path.join(publicDir, 'ref_for_socialgraph.png')
 
-/** Matches home-shell accent family */
-const RING_HEX = '#6b4ce8'
 const MASKABLE_BG = '#faf9fc'
 
-function circleMaskSvg(size) {
-  const r = size / 2
-  return Buffer.from(
-    `<svg width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="${r}" cy="${r}" r="${r}" fill="#ffffff"/>
-    </svg>`,
-  )
+/** Raster C mark to square PNG (transparent around stroke). */
+async function rasterCMark(size) {
+  return sharp(FAVICON_SVG).resize(size, size).png().toBuffer()
 }
 
-function ringOverlaySvg(size, strokePx) {
-  const c = size / 2
-  const radius = c - strokePx / 2
-  return Buffer.from(
-    `<svg width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="${c}" cy="${c}" r="${radius}" fill="none" stroke="${RING_HEX}" stroke-width="${strokePx}"/>
-    </svg>`,
-  )
-}
-
-function strokeForSize(size) {
-  return Math.max(2, Math.round(size * 0.034))
-}
-
-/**
- * @param {boolean} withRing
- */
-async function renderAvatarPng(size, withRing) {
-  const stroke = strokeForSize(size)
-  let pipeline = sharp(AVATAR)
-    .resize(size, size, { fit: 'cover', position: 'centre' })
-    .ensureAlpha()
-    .composite([{ input: circleMaskSvg(size), blend: 'dest-in' }])
-
-  if (withRing) {
-    pipeline = sharp(await pipeline.png().toBuffer()).composite([
-      { input: ringOverlaySvg(size, stroke), blend: 'over' },
-    ])
-  }
-
-  return pipeline.png().toBuffer()
+/** C mark composited on solid background (better for apple-touch-icon). */
+async function rasterCMarkOnBackground(size, background = MASKABLE_BG) {
+  const fg = await rasterCMark(size)
+  return sharp({
+    create: {
+      width: size,
+      height: size,
+      channels: 4,
+      background,
+    },
+  })
+    .composite([{ input: fg, left: 0, top: 0 }])
+    .png()
+    .toBuffer()
 }
 
 async function writeMaskable512() {
@@ -82,7 +59,7 @@ async function writeMaskable512() {
   const inner = Math.round(canvas * 0.62)
   const top = Math.floor((canvas - inner) / 2)
   const left = top
-  const face = await renderAvatarPng(inner, true)
+  const mark = await sharp(FAVICON_SVG).resize(inner, inner).png().toBuffer()
 
   await sharp({
     create: {
@@ -92,32 +69,32 @@ async function writeMaskable512() {
       background: MASKABLE_BG,
     },
   })
-    .composite([{ input: face, left, top }])
+    .composite([{ input: mark, left, top }])
     .png()
     .toFile(path.join(iconsDir, 'icon-maskable-512.png'))
 }
 
 async function main() {
-  if (!existsSync(AVATAR)) {
-    console.error('Missing', AVATAR)
+  if (!existsSync(FAVICON_SVG)) {
+    console.error('Missing', FAVICON_SVG)
     process.exit(1)
   }
   mkdirSync(iconsDir, { recursive: true })
 
-  const ring16 = await renderAvatarPng(16, true)
-  const ring32 = await renderAvatarPng(32, true)
-  const ring48 = await renderAvatarPng(48, true)
-  const ico = await pngToIco([ring16, ring32, ring48])
+  const png16 = await rasterCMark(16)
+  const png32 = await rasterCMark(32)
+  const png48 = await rasterCMark(48)
+  const ico = await pngToIco([png16, png32, png48])
   writeFileSync(path.join(publicDir, 'favicon.ico'), ico)
 
-  const ring180 = await renderAvatarPng(180, true)
-  await sharp(ring180).png().toFile(path.join(publicDir, 'apple-touch-icon.png'))
+  const touch180 = await rasterCMarkOnBackground(180)
+  await sharp(touch180).png().toFile(path.join(publicDir, 'apple-touch-icon.png'))
 
-  const ring192 = await renderAvatarPng(192, true)
-  await sharp(ring192).png().toFile(path.join(iconsDir, 'icon-192.png'))
+  const png192 = await rasterCMark(192)
+  await sharp(png192).png().toFile(path.join(iconsDir, 'icon-192.png'))
 
-  const ring512 = await renderAvatarPng(512, true)
-  await sharp(ring512).png().toFile(path.join(iconsDir, 'icon-512.png'))
+  const png512 = await rasterCMark(512)
+  await sharp(png512).png().toFile(path.join(iconsDir, 'icon-512.png'))
 
   await writeMaskable512()
 
@@ -131,7 +108,7 @@ async function main() {
     console.warn('Skip og-image.jpg: missing', OG_SRC)
   }
 
-  console.log('Wrote favicon.ico, apple-touch-icon.png, icons/*')
+  console.log('Wrote favicon.ico, apple-touch-icon.png, icons/* from favicon.svg')
 }
 
 main().catch((err) => {
