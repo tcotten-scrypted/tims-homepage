@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Heart, MessageCircle } from 'lucide-react'
 import {
   QuotedTweet,
@@ -20,6 +20,9 @@ import type { HomeFeedItem } from '../feed/homeFeed'
 import { HOME_FEED_PROFILE } from '../feed/homeFeed'
 
 type EnrichedTweet = ReturnType<typeof enrichTweet>
+
+/** Tweet fetches with index < this run immediately; rest wait for viewport (reduces critical request chain). */
+const DEFAULT_EAGER_TWEET_COUNT = 1
 
 function mediaPeekSrc(media: MediaDetails): string {
   if (media.type === 'photo') return getMediaUrl(media, 'small')
@@ -168,23 +171,65 @@ function CompactTweetAuthorRow({ tweet }: { tweet: EnrichedTweet }) {
   )
 }
 
+function TweetPlaceholderShell({ showTopBorder }: { showTopBorder?: boolean }) {
+  return (
+    <div className={showTopBorder ? 'home-feed-tweet-unit home-feed-tweet-unit--follows' : 'home-feed-tweet-unit'}>
+      <div className="home-feed-tile__post home-feed-tile__post--placeholder">
+        <div className="home-feed-tile__main">
+          <div className="home-feed-tile__clip">
+            <TweetSkeleton />
+            <div className="home-feed-tile__fade" aria-hidden />
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/**
+ * Defers mounting (and useTweet / SWR) until the tile nears the viewport so dozens of tweets
+ * on /latest do not chain off the main bundle.
+ */
+function LazyCompactFeedTweet({ id, showTopBorder }: { id: string; showTopBorder?: boolean }) {
+  const [active, setActive] = useState(false)
+  const rootRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (active) return
+    const el = rootRef.current
+    if (!el) return
+
+    if (typeof IntersectionObserver === 'undefined') {
+      setActive(true)
+      return
+    }
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setActive(true)
+          obs.disconnect()
+        }
+      },
+      { root: null, rootMargin: '280px 0px', threshold: 0 },
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [active])
+
+  if (active) {
+    return <CompactFeedTweet id={id} showTopBorder={showTopBorder} />
+  }
+
+  return <div ref={rootRef}>{TweetPlaceholderShell({ showTopBorder })}</div>
+}
+
 /** X preview: compact avatar + @handle (no Follow), body, media peek, quoted, time. */
 function CompactFeedTweet({ id, showTopBorder }: { id: string; showTopBorder?: boolean }) {
   const { data, error, isLoading } = useTweet(id)
 
   if (isLoading) {
-    return (
-      <div className={showTopBorder ? 'home-feed-tweet-unit home-feed-tweet-unit--follows' : 'home-feed-tweet-unit'}>
-        <div className="home-feed-tile__post home-feed-tile__post--placeholder">
-          <div className="home-feed-tile__main">
-            <div className="home-feed-tile__clip">
-              <TweetSkeleton />
-              <div className="home-feed-tile__fade" aria-hidden />
-            </div>
-          </div>
-        </div>
-      </div>
-    )
+    return <TweetPlaceholderShell showTopBorder={showTopBorder} />
   }
 
   if (error || !data) {
@@ -258,52 +303,84 @@ function CompactFeedTweet({ id, showTopBorder }: { id: string; showTopBorder?: b
   )
 }
 
-function FeedTweetTile({ ids }: { ids: string[] }) {
+function FeedTweetTile({
+  ids,
+  eagerFromIndex,
+  eagerTweetCount,
+}: {
+  ids: string[]
+  eagerFromIndex: number
+  eagerTweetCount: number
+}) {
   return (
     <article className="home-feed-tile home-feed-tile--tweet light" aria-label="X post preview">
-      {ids.map((id, i) => (
-        <CompactFeedTweet key={id} id={id} showTopBorder={i > 0} />
-      ))}
+      {ids.map((id, i) => {
+        const globalIdx = eagerFromIndex + i
+        const eager = globalIdx < eagerTweetCount
+        return eager ? (
+          <CompactFeedTweet key={id} id={id} showTopBorder={i > 0} />
+        ) : (
+          <LazyCompactFeedTweet key={id} id={id} showTopBorder={i > 0} />
+        )
+      })}
     </article>
   )
 }
 
-function FeedItems({ items }: { items: HomeFeedItem[] }) {
+function FeedItems({ items, eagerTweetCount }: { items: HomeFeedItem[]; eagerTweetCount: number }) {
+  let tweetIdIndex = 0
   return (
     <div className="home-feed__grid">
-      {items.map((item) => (
-        <div key={item.kind === 'tweet' ? item.ids.join('-') : item.url} className="home-feed__cell">
-          {item.kind === 'tweet' ? (
-            <FeedTweetTile ids={item.ids} />
-          ) : (
-            <FeedLinkTile {...item} />
-          )}
-        </div>
-      ))}
+      {items.map((item) => {
+        const key = item.kind === 'tweet' ? item.ids.join('-') : item.url
+        if (item.kind === 'link') {
+          return (
+            <div key={key} className="home-feed__cell">
+              <FeedLinkTile {...item} />
+            </div>
+          )
+        }
+        const eagerFrom = tweetIdIndex
+        tweetIdIndex += item.ids.length
+        return (
+          <div key={key} className="home-feed__cell">
+            <FeedTweetTile
+              ids={item.ids}
+              eagerFromIndex={eagerFrom}
+              eagerTweetCount={eagerTweetCount}
+            />
+          </div>
+        )
+      })}
     </div>
   )
 }
 
-function FeedHydratedBody({ items }: { items: HomeFeedItem[] }) {
+function FeedHydratedBody({ items, eagerTweetCount }: { items: HomeFeedItem[]; eagerTweetCount: number }) {
   const [live, setLive] = useState(false)
   useEffect(() => setLive(true), [])
   if (!live) return <FeedPrerenderShell items={items} />
-  return <FeedItems items={items} />
+  return <FeedItems items={items} eagerTweetCount={eagerTweetCount} />
 }
 
 export type FeedDisplayProps = {
   items: HomeFeedItem[]
+  /**
+   * First N tweet API fetches (by order in `items`, counting each thread id) run on mount.
+   * Lower = shorter critical path; higher = snappier above-the-fold previews. Default 1.
+   */
+  eagerTweetCount?: number
 }
 
 /**
  * Prerender/SSR: one tile per feed item (same dimensions as live grid); tweet slots use TweetSkeleton.
  * After mount, swaps to SWR-backed tiles without changing column layout.
  */
-export function FeedDisplay({ items }: FeedDisplayProps) {
+export function FeedDisplay({ items, eagerTweetCount = DEFAULT_EAGER_TWEET_COUNT }: FeedDisplayProps) {
   return (
     <>
       <HomeFeedStaticFallback items={items} />
-      <FeedHydratedBody items={items} />
+      <FeedHydratedBody items={items} eagerTweetCount={eagerTweetCount} />
     </>
   )
 }

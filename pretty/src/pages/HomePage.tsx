@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from 'react'
+import { useEffect } from 'react'
 import { GraduationCap, Mail } from 'lucide-react'
 import { BoardyIntroButton } from 'boardy-intro-react'
 import 'boardy-intro-react/style.css'
@@ -8,12 +8,9 @@ import { HomeFriendsSection } from '../components/HomeFriendsSection'
 import { HomeJsonLd } from '../components/HomeJsonLd'
 import { HomeNav } from '../components/HomeNav'
 import { SplashBanner } from '../SplashBanner'
+import { BuildingAccentLazyMount } from '../components/BuildingAccentLazyMount'
 import '../site.css'
 import '../styles/home-shell.css'
-
-const BuildingAccentShader = lazy(() =>
-  import('../components/BuildingAccentShader').then((m) => ({ default: m.BuildingAccentShader })),
-)
 
 const SKILL_CLOUD: { category: string; pills: string[] }[] = [
   {
@@ -419,11 +416,7 @@ export default function HomePage() {
 
         <section id="building" className="home-section" aria-labelledby="building-heading">
           <div className="home-split">
-            <div className="home-split__accent">
-              <Suspense fallback={null}>
-                <BuildingAccentShader />
-              </Suspense>
-            </div>
+            <BuildingAccentLazyMount />
             <div className="home-split__body home-main__prose">
               <p className="home-section__kicker">Now</p>
               <h2 id="building-heading">What I&apos;m Building</h2>

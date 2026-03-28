@@ -36,7 +36,7 @@ export default function LatestUpdatesPage() {
 
             <div className="home-feed__card home-feed__card--flat">
               <div className="home-feed__card-body home-feed__card-body--flush">
-                <FeedDisplay items={HOME_FEED_ITEMS} />
+                <FeedDisplay items={HOME_FEED_ITEMS} eagerTweetCount={0} />
               </div>
             </div>
           </div>

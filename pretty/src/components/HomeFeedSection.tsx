@@ -43,7 +43,7 @@ export function HomeFeedSection() {
             </a>
           </div>
           <div className="home-feed__card-body">
-            <FeedDisplay items={previewItems} />
+            <FeedDisplay items={previewItems} eagerTweetCount={2} />
             {previousUpdatesCount > 0 ? (
               <p className="home-feed__more">
                 Read previous <Link to="/latest">updates ({previousUpdatesCount})</Link>.

@@ -783,12 +783,19 @@ body.home-shell .home-hero__lede {
   }
 }
 
+/* Mesh stand-in for BuildingAccentShader (fragment palette: navy/dark/accent/accent2/teal) */
 .home-split__accent {
   position: relative;
   min-height: 180px;
   border-radius: var(--home-radius);
-  background: linear-gradient(160deg, #1a1035 0%, #0f172a 50%, #134e4a 100%);
   overflow: hidden;
+  background-color: #0f172a;
+  background-image:
+    radial-gradient(ellipse 120% 90% at 12% 18%, rgba(124, 92, 240, 0.42) 0%, transparent 52%),
+    radial-gradient(ellipse 85% 75% at 92% 28%, rgba(79, 43, 212, 0.38) 0%, transparent 48%),
+    radial-gradient(ellipse 100% 80% at 70% 88%, rgba(13, 148, 136, 0.32) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 60% at 8% 92%, rgba(26, 16, 53, 0.95) 0%, transparent 50%),
+    linear-gradient(168deg, #1a1035 0%, #0f172a 38%, #101b2e 72%, #0d3d38 100%);
 }
 
 .home-split__shader {
