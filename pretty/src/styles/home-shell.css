@@ -52,6 +52,7 @@ body.home-shell .hero-pill,
 body.home-shell .hero-pill *,
 body.home-shell .home-stat__value,
 body.home-shell .home-stat__label,
+body.home-shell .home-thesis-card__subtitle,
 body.home-shell .home-thesis-card__idx,
 body.home-shell .home-card__label,
 body.home-shell .home-split__tag,
@@ -678,6 +679,54 @@ body.home-shell .home-hero__lede {
   line-height: 1.35;
 }
 
+.home-profile-icons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: clamp(1rem, 2vw, 1.35rem);
+}
+
+.home-profile-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.65rem;
+  height: 2.65rem;
+  border-radius: var(--home-radius-sm);
+  color: var(--home-ink) !important;
+  text-decoration: none !important;
+  border: 1px solid var(--home-line);
+  background: var(--home-surface);
+  box-shadow: 0 4px 14px rgba(20, 12, 60, 0.05);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.home-profile-icon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(79, 43, 212, 0.12);
+  border-color: rgba(124, 92, 240, 0.45);
+  color: var(--home-accent) !important;
+}
+
+.home-profile-icon__svg {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.home-profile-icon__svg--fill path {
+  fill: currentColor;
+}
+
+.home-profile-icon__lucide {
+  flex-shrink: 0;
+}
+
 /* Thesis cards */
 .home-thesis-grid {
   display: grid;
@@ -720,6 +769,24 @@ body.home-shell .home-hero__lede {
   padding-right: 2rem;
 }
 
+.home-thesis-card p.home-thesis-card__subtitle {
+  margin: 0 0 0.55rem;
+  font-size: 0.68rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--home-muted);
+  line-height: 1.35;
+}
+
+.home-thesis-card p + p {
+  margin-top: 0.75rem;
+}
+
+.home-thesis-card .home-thesis-card__subtitle + p {
+  margin-top: 0.35rem;
+}
+
 /* Building split */
 .home-split {
   display: grid;
@@ -739,31 +806,56 @@ body.home-shell .home-hero__lede {
   position: relative;
   min-height: 180px;
   border-radius: var(--home-radius);
-  background:
-    radial-gradient(80% 80% at 30% 20%, rgba(124, 92, 240, 0.45) 0%, transparent 55%),
-    radial-gradient(70% 70% at 80% 80%, rgba(13, 148, 136, 0.35) 0%, transparent 50%),
-    linear-gradient(160deg, #1a1035 0%, #0f172a 50%, #134e4a 100%);
+  background: linear-gradient(160deg, #1a1035 0%, #0f172a 50%, #134e4a 100%);
   overflow: hidden;
 }
 
-.home-split__orb {
+.home-split__shader {
   position: absolute;
-  width: 140%;
-  height: 140%;
-  left: -20%;
-  top: -20%;
-  background: radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.12) 0%, transparent 45%);
-  animation: home-orb 18s ease-in-out infinite;
+  inset: 0;
+  pointer-events: none;
 }
 
-@keyframes home-orb {
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-  }
-  50% {
-    transform: translate(4%, -3%) scale(1.05);
-  }
+.home-split__shader-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  vertical-align: top;
+  image-rendering: pixelated;
+}
+
+.home-split__shader-credit {
+  position: absolute;
+  z-index: 1;
+  bottom: 0.5rem;
+  left: 0.55rem;
+  right: 0.55rem;
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  line-height: 1.35;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.42);
+  pointer-events: none;
+}
+
+.home-split__shader-credit-handle {
+  white-space: nowrap;
+}
+
+.home-split__shader-credit a {
+  pointer-events: auto;
+}
+
+body.home-shell .home-main .home-split__shader-credit a {
+  color: rgba(255, 255, 255, 0.78) !important;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+body.home-shell .home-main .home-split__shader-credit a:hover {
+  color: #ffffff !important;
 }
 
 .home-split__body .building-cta {
@@ -1037,14 +1129,14 @@ body.home-shell .home-talks li {
 }
 
 /* Links in main */
-body.home-shell .home-main a:not(.home-cta-tile) {
+body.home-shell .home-main a:not(.home-cta-tile):not(.home-profile-icon) {
   color: var(--home-accent);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
 
-body.home-shell .home-main a:not(.home-cta-tile):hover {
+body.home-shell .home-main a:not(.home-cta-tile):not(.home-profile-icon):hover {
   color: #3d1fa8;
 }
 

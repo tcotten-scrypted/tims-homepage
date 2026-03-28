@@ -1,4 +1,5 @@
-import { useEffect } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
+import { GraduationCap, Mail } from 'lucide-react'
 import { BoardyIntroButton } from 'boardy-intro-react'
 import 'boardy-intro-react/style.css'
 import { HomeJsonLd } from '../components/HomeJsonLd'
@@ -6,6 +7,10 @@ import { HomeNav } from '../components/HomeNav'
 import { SplashBanner } from '../SplashBanner'
 import '../site.css'
 import '../styles/home-shell.css'
+
+const BuildingAccentShader = lazy(() =>
+  import('../components/BuildingAccentShader').then((m) => ({ default: m.BuildingAccentShader })),
+)
 
 const SKILL_CLOUD: { category: string; pills: string[] }[] = [
   {
@@ -174,9 +179,6 @@ function SkillsSection() {
       <div className="home-main__prose home-main__prose--wide">
         <p className="home-section__kicker">Capabilities</p>
         <h2 id="skills-heading">Skills</h2>
-        <p className="home-section__lede">
-          Tag cloud by area — scan quickly or read a cluster in depth.
-        </p>
         <div className="home-skills-cloud">
           {SKILL_CLOUD.map(({ category, pills }, i) => (
             <div
@@ -202,6 +204,72 @@ function SkillsSection() {
         </div>
       </div>
     </section>
+  )
+}
+
+function ProfileContactIcons() {
+  return (
+    <nav className="home-profile-icons" aria-label="Social profiles and email">
+      <a
+        className="home-profile-icon"
+        href="https://www.linkedin.com/in/timcotten"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="LinkedIn"
+      >
+        <svg
+          className="home-profile-icon__svg home-profile-icon__svg--fill"
+          viewBox="0 0 24 24"
+          aria-hidden
+        >
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+        </svg>
+      </a>
+      <a
+        className="home-profile-icon"
+        href="https://x.com/CottenIO"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="X"
+      >
+        <svg
+          className="home-profile-icon__svg home-profile-icon__svg--fill"
+          viewBox="0 0 24 24"
+          aria-hidden
+        >
+          <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
+        </svg>
+      </a>
+      <a
+        className="home-profile-icon"
+        href="https://warpcast.com/cottenio"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Farcaster"
+      >
+        <svg
+          className="home-profile-icon__svg home-profile-icon__svg--fill"
+          viewBox="0 0 24 24"
+          aria-hidden
+        >
+          <path d="M18.24.24H5.76C2.5789.24 0 2.8188 0 6v12c0 3.1811 2.5789 5.76 5.76 5.76h12.48c3.1812 0 5.76-2.5789 5.76-5.76V6C24 2.8188 21.4212.24 18.24.24m.8155 17.1662v.504c.2868-.0256.5458.1905.5439.479v.5688h-5.1437v-.5688c-.0019-.2885.2576-.5047.5443-.479v-.504c0-.22.1525-.402.358-.458l-.0095-4.3645c-.1589-1.7366-1.6402-3.0979-3.4435-3.0979-1.8038 0-3.2846 1.3613-3.4435 3.0979l-.0096 4.3578c.2276.0424.5318.2083.5395.4648v.504c.2863-.0256.5457.1905.5438.479v.5688H4.3915v-.5688c-.0019-.2885.2575-.5047.5438-.479v-.504c0-.2529.2011-.4548.4536-.4724v-7.895h-.4905L4.2898 7.008l2.6405-.0005V5.0419h9.9495v1.9656h2.8219l-.6091 2.0314h-.4901v7.8949c.2519.0177.453.2195.453.4724" />
+        </svg>
+      </a>
+      <a
+        className="home-profile-icon"
+        href="mailto:tim@cotten.io"
+        aria-label="Personal email: tim@cotten.io"
+      >
+        <Mail className="home-profile-icon__lucide" size={20} strokeWidth={2} aria-hidden />
+      </a>
+      <a
+        className="home-profile-icon"
+        href="mailto:tcotten2@gmu.edu"
+        aria-label="University email: tcotten2@gmu.edu"
+      >
+        <GraduationCap className="home-profile-icon__lucide" size={20} strokeWidth={2} aria-hidden />
+      </a>
+    </nav>
   )
 }
 
@@ -246,12 +314,12 @@ export default function HomePage() {
                   <span className="home-stat__label">Pre-seed raised</span>
                 </div>
                 <div className="home-stat">
-                  <span className="home-stat__value">10k+</span>
-                  <span className="home-stat__label">Token holders</span>
+                  <span className="home-stat__value">10k+ Community</span>
+                  <span className="home-stat__label">Token Holders</span>
                 </div>
                 <div className="home-stat">
                   <span className="home-stat__value">ERC-8004</span>
-                  <span className="home-stat__label">Standard work</span>
+                  <span className="home-stat__label">Standards Contributor</span>
                 </div>
                 <div className="home-stat">
                   <span className="home-stat__value">x402</span>
@@ -262,46 +330,15 @@ export default function HomePage() {
           </div>
           <div className="home-cta-grid" role="list">
             <a className="home-cta-tile" role="listitem" href="https://scrypted.ai">
-              <strong>Scrypted</strong>
-              <span>Agent discovery &amp; attention</span>
+              <strong>Scrypted Network</strong>
+              <span>Agent discovery, workflows, and attention auctions.</span>
             </a>
             <a className="home-cta-tile" role="listitem" href="https://delu.la">
               <strong>Delula</strong>
-              <span>Autonomous consumer product</span>
-            </a>
-            <a
-              className="home-cta-tile"
-              role="listitem"
-              href="https://www.linkedin.com/in/timcotten"
-            >
-              <strong>LinkedIn</strong>
-              <span>Professional</span>
-            </a>
-            <a className="home-cta-tile" role="listitem" href="https://x.com/CottenIO">
-              <strong>X</strong>
-              <span>Posts &amp; takes</span>
-            </a>
-            <a
-              className="home-cta-tile"
-              role="listitem"
-              href="https://warpcast.com/cottenio"
-            >
-              <strong>Farcaster</strong>
-              <span>Warpcast</span>
-            </a>
-            <a className="home-cta-tile" role="listitem" href="mailto:tim@cotten.io">
-              <strong>Email</strong>
-              <span>tim@cotten.io</span>
-            </a>
-            <a
-              className="home-cta-tile"
-              role="listitem"
-              href="mailto:tcotten2@gmu.edu"
-            >
-              <strong>GMU</strong>
-              <span>University email</span>
+              <span>Make viral content with an autonomous consumer product.</span>
             </a>
           </div>
+          <ProfileContactIcons />
         </section>
 
         <section
@@ -317,6 +354,7 @@ export default function HomePage() {
                 <span className="home-thesis-card__idx" aria-hidden>
                   01
                 </span>
+                <p className="home-thesis-card__subtitle">Games Showed the Way</p>
                 <p>
                   The challenges in building an agentic economy today are inherently
                   similar to those we faced building the first generation of Massively
@@ -327,15 +365,23 @@ export default function HomePage() {
                 <span className="home-thesis-card__idx" aria-hidden>
                   02
                 </span>
+                <p className="home-thesis-card__subtitle">
+                  The Machine Economy will Evolve
+                </p>
                 <p>
                   Agent-to-Agent payments, whether on-chain or off-chain, will
                   inevitably approach the scale of human payments.
+                </p>
+                <p>
+                  AGI is most likely to be achieved as an emergent property of many
+                  coordinating agents than as one monolithic system.
                 </p>
               </article>
               <article className="home-thesis-card" role="listitem">
                 <span className="home-thesis-card__idx" aria-hidden>
                   03
                 </span>
+                <p className="home-thesis-card__subtitle">Advertising Works on LLMs</p>
                 <p>
                   Humans are susceptible to persuasion, and sufficiently advanced AI
                   agents - tasked with fulfilling goals like shopping based on their
@@ -346,10 +392,12 @@ export default function HomePage() {
                 <span className="home-thesis-card__idx" aria-hidden>
                   04
                 </span>
+                <p className="home-thesis-card__subtitle">Ad Auctions for Machines</p>
                 <p>
                   We now have primitives for agent Identity, Reputation, Verification,
-                  Payments, and Coordination (ERC-8004, x402, A2A, etc). It follows
-                  that the next primitives include mechanisms for attention markets.
+                  Payments, and Coordination &amp; Fuzzy Verification (ERC-8004,
+                  x402, A2A, etc). It follows that the next primitives include
+                  mechanisms for attention markets.
                 </p>
               </article>
             </div>
@@ -359,8 +407,10 @@ export default function HomePage() {
 
         <section id="building" className="home-section" aria-labelledby="building-heading">
           <div className="home-split">
-            <div className="home-split__accent" aria-hidden>
-              <div className="home-split__orb" />
+            <div className="home-split__accent">
+              <Suspense fallback={null}>
+                <BuildingAccentShader />
+              </Suspense>
             </div>
             <div className="home-split__body home-main__prose">
               <p className="home-section__kicker">Now</p>
@@ -501,7 +551,9 @@ export default function HomePage() {
               </li>
               <li>
                 <article className="home-card">
-                  <span className="home-card__label">Coordination</span>
+                  <span className="home-card__label">
+                    Coordination &amp; Fuzzy Verification
+                  </span>
                   <p>
                     <a href="https://blog.cotten.io/the-commit-reveal-pairwise-comparison-protocol-crpc-e1434fff94c4">
                       Commit-Reveal Pairwise Comparison Protocol (CRPC)
@@ -528,6 +580,17 @@ export default function HomePage() {
               Various tools, projects, hackathon entries, and research I&apos;ve
               open-sourced.
             </p>
+
+            <h3 className="repo-sub">Public Goods</h3>
+            <ul className="links">
+              <li>
+                <a href="https://github.com/tcotten-scrypted/boardyai-cta">
+                  tcotten-scrypted/boardyai-cta
+                </a>{' '}
+                — React WhatsApp button for Boardy-mediated intros on your site.
+                Unofficial community project—not affiliated with Boardy.
+              </li>
+            </ul>
 
             <h3 className="repo-sub">Research &amp; Experiments</h3>
             <ul className="links">
@@ -561,8 +624,8 @@ export default function HomePage() {
                   scryptedai/differential-datalog
                 </a>{' '}
                 — DDlog fork with Rust 1.93 upgrade, test-suite fixes, and pinned
-                improvements to <code>scryptedai/differential-dataflow</code> (fixing
-                merge-batcher OOM and kernel panics).
+                improvements to <code>scryptedai/differential-dataflow</code>, and
+                resolved their longstanding merge-batcher OOM and kernel panic bugs.
               </li>
             </ul>
 

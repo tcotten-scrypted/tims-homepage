@@ -13,7 +13,8 @@
  *   DEPLOY_AWS_PROFILE — AWS CLI profile name (default: DEPLOY_AWS_PROFILE or AWS_PROFILE)
  *   AWS_PROFILE        — used if DEPLOY_AWS_PROFILE unset
  *   DEPLOY_S3_PREFIX   — key prefix inside bucket, e.g. "" or "site/" (no leading slash)
- *   DEPLOY_CLOUDFRONT_DISTRIBUTION_ID — if set, create invalidation for /*
+ *   DEPLOY_CLOUDFRONT_DISTRIBUTION_ID — required: create invalidation for /* after upload
+ *   DEPLOY_SKIP_CLOUDFRONT=1 — skip CloudFront (S3-only / no distribution)
  */
 
 import { readFileSync, existsSync } from 'node:fs'
@@ -56,6 +57,7 @@ const profile =
   process.env.AWS_PROFILE?.trim() ||
   ''
 const distributionId = process.env.DEPLOY_CLOUDFRONT_DISTRIBUTION_ID?.trim()
+const skipCloudFront = process.env.DEPLOY_SKIP_CLOUDFRONT?.trim() === '1'
 
 if (!bucket) {
   console.error(
@@ -69,6 +71,14 @@ if (!profile) {
     'Set DEPLOY_AWS_PROFILE (or AWS_PROFILE) to an AWS CLI profile for this site, e.g.\n' +
       '  DEPLOY_AWS_PROFILE=tim-site npm run deploy\n' +
       'Configure that profile with: aws configure --profile tim-site',
+  )
+  process.exit(1)
+}
+
+if (!distributionId && !skipCloudFront) {
+  console.error(
+    'Missing DEPLOY_CLOUDFRONT_DISTRIBUTION_ID. Deploy runs CloudFront invalidation for /* after upload.\n' +
+      'Set it in .env.deploy, or set DEPLOY_SKIP_CLOUDFRONT=1 for S3-only (no invalidation).',
   )
   process.exit(1)
 }
@@ -118,7 +128,7 @@ aws([
   'public,max-age=0,must-revalidate',
 ])
 
-if (distributionId) {
+if (distributionId && !skipCloudFront) {
   console.log(`Invalidating CloudFront distribution ${distributionId} (/*)`)
   aws([
     'cloudfront',
@@ -131,9 +141,7 @@ if (distributionId) {
     profile,
   ])
 } else {
-  console.log(
-    'Skipping CloudFront (set DEPLOY_CLOUDFRONT_DISTRIBUTION_ID in .env.deploy to enable).',
-  )
+  console.log('Skipping CloudFront invalidation (DEPLOY_SKIP_CLOUDFRONT=1 or no distribution ID).')
 }
 
 console.log('Done.')

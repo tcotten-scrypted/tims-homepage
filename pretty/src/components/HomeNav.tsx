@@ -4,7 +4,6 @@ import {
   ArrowUpToLine,
   BookOpen,
   Briefcase,
-  Building2,
   FlaskConical,
   FolderGit2,
   GraduationCap,
@@ -27,7 +26,6 @@ const SECTION_NAV: { href: string; label: string; icon: LucideIcon }[] = [
   { href: '#public-repositories', label: 'Repos', icon: FolderGit2 },
   { href: '#work-experience', label: 'Experience', icon: Briefcase },
   { href: '#education', label: 'Education', icon: GraduationCap },
-  { href: '#incubators-accelerators', label: 'Programs', icon: Building2 },
   { href: '#talks-presentations', label: 'Talks', icon: Mic },
   { href: '#media', label: 'Media', icon: BookOpen },
 ]
