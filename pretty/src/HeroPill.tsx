@@ -7,8 +7,8 @@ export function HeroPill() {
         className="hero-pill__avatar"
         src="/profile_avatar.png"
         alt=""
-        width={112}
-        height={112}
+        width={72}
+        height={72}
         decoding="async"
       />
       <header className="hero-pill__header">

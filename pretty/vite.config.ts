@@ -73,6 +73,8 @@ export default defineConfig({
       'react-router-dom',
       'lucide-react',
       'boardy-intro-react',
+      'react-tweet',
+      'swr',
     ],
   },
 })

@@ -69,6 +69,14 @@ h4 {
   pointer-events: auto;
 }
 
+@media (max-width: 400px) {
+  .splash-banner__overlay {
+    align-items: center;
+    justify-content: center;
+    padding: 0.45rem 0.5rem;
+  }
+}
+
 /* Name below splash: UI sans, not body-serif <p> default. */
 .site-header-name {
   font-family: Sora, system-ui, -apple-system, sans-serif;
@@ -226,14 +234,12 @@ ol.links li {
 
 #education ul,
 #incubators-accelerators ul,
-#talks-presentations ul,
 #hackathon-wins ul {
   margin: 0 0 1rem 0;
   padding-left: 1.35rem;
 }
 #education li,
 #incubators-accelerators li,
-#talks-presentations li,
 #hackathon-wins li {
   margin-bottom: 0.35rem;
 }

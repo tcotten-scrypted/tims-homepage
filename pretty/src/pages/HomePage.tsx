@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect } from 'react'
 import { GraduationCap, Mail } from 'lucide-react'
 import { BoardyIntroButton } from 'boardy-intro-react'
 import 'boardy-intro-react/style.css'
+import { HomeFeedSection } from '../components/HomeFeedSection'
 import { HomeJsonLd } from '../components/HomeJsonLd'
 import { HomeNav } from '../components/HomeNav'
 import { SplashBanner } from '../SplashBanner'
@@ -340,6 +341,8 @@ export default function HomePage() {
           </div>
           <ProfileContactIcons />
         </section>
+
+        <HomeFeedSection />
 
         <section
           id="thesis"
@@ -711,13 +714,13 @@ export default function HomePage() {
         </section>
 
         <section
-          id="work-experience"
+          id="career"
           className="home-section"
-          aria-labelledby="work-heading"
+          aria-labelledby="career-heading"
         >
           <div className="home-main__prose">
             <p className="home-section__kicker">Career</p>
-            <h2 id="work-heading">Work Experience</h2>
+            <h2 id="career-heading">Work experience</h2>
             <div className="home-timeline">
             <div className="home-timeline__item experience-item">
               <strong>Founder &amp; CEO, Scrypted</strong>
@@ -843,56 +846,53 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section
-          id="talks-presentations"
-          className="home-section home-section--muted"
-          aria-labelledby="talks-heading"
-        >
-          <div className="home-main__prose">
-            <p className="home-section__kicker">Talks</p>
-            <h2 id="talks-heading">Selected Talks &amp; Presentations</h2>
-            <ul className="home-talks">
-              <li>
-                ETHDC III 2026 – Panel: &ldquo;AI Agents &amp; Protocol Growth&rdquo;
-              </li>
-              <li>
-                GDC 2025 NPC Day – &ldquo;h011yw00d + AVBs: Beyond the Yap&rdquo;
-              </li>
-              <li>Consensus 2025 – AI Agent Demos</li>
-              <li>
-                DeAI Day Brooklyn 2025 – &ldquo;DeAI Needs a Front End&rdquo; panel and
-                related sessions
-              </li>
-              <li>ETHDenver 2025 AI Summit – AI Agents panel</li>
-              <li>
-                The AI Summit New York – Keynote: &ldquo;Autonomous AI Agents:
-                Yesterday, Today, &amp; the Decentralized Tomorrow&rdquo;
-              </li>
-              <li>
-                ETH Devcon 2024 NPC Day (Bangkok) – Keynote: &ldquo;Autonomous AI
-                Agents: Yesterday, Today, and the Decentralized Tomorrow&rdquo;
-              </li>
-              <li>
-                Virginia Serious Game Institute Speaker Series – Multiple talks on
-                metaverse, game development, and AI
-              </li>
-            </ul>
-          </div>
-        </section>
-
-        <section id="media" className="home-section" aria-labelledby="media-heading">
-          <div className="home-main__prose">
-            <p className="home-section__kicker">Media</p>
-            <h2 id="media-heading">Writings</h2>
-            <p className="intro">
-              Video and other formats will show up here over time. For now, selected
-              articles from{' '}
-              <a href="https://blog.cotten.io">blog.cotten.io</a> (Cotten.IO on
-              Medium). <a href="https://blog.cotten.io/all">Full archive</a>.
-            </p>
-            <ul className="links home-writings-list">
-              <WritingsLinks />
-            </ul>
+        <section id="media" className="home-section home-section--muted" aria-labelledby="media-heading">
+          <div className="home-main__prose home-main__prose--wide">
+            <div className="home-media-stack">
+              <div className="home-media-stack__block">
+                <p className="home-section__kicker">Talks</p>
+                <h2 id="media-talks-heading">Selected Talks &amp; Presentations</h2>
+                <ul className="home-talks">
+                  <li>
+                    ETHDC III 2026 – Panel: &ldquo;AI Agents &amp; Protocol Growth&rdquo;
+                  </li>
+                  <li>
+                    GDC 2025 NPC Day – &ldquo;h011yw00d + AVBs: Beyond the Yap&rdquo;
+                  </li>
+                  <li>Consensus 2025 – AI Agent Demos</li>
+                  <li>
+                    DeAI Day Brooklyn 2025 – &ldquo;DeAI Needs a Front End&rdquo; panel and
+                    related sessions
+                  </li>
+                  <li>ETHDenver 2025 AI Summit – AI Agents panel</li>
+                  <li>
+                    The AI Summit New York – Keynote: &ldquo;Autonomous AI Agents:
+                    Yesterday, Today, &amp; the Decentralized Tomorrow&rdquo;
+                  </li>
+                  <li>
+                    ETH Devcon 2024 NPC Day (Bangkok) – Keynote: &ldquo;Autonomous AI
+                    Agents: Yesterday, Today, and the Decentralized Tomorrow&rdquo;
+                  </li>
+                  <li>
+                    Virginia Serious Game Institute Speaker Series – Multiple talks on
+                    metaverse, game development, and AI
+                  </li>
+                </ul>
+              </div>
+              <div className="home-media-stack__block home-media-stack__block--writings">
+                <p className="home-section__kicker">Media</p>
+                <h2 id="media-heading">Writings</h2>
+                <p className="intro">
+                  Video and other formats will show up here over time. For now, selected
+                  articles from{' '}
+                  <a href="https://blog.cotten.io">blog.cotten.io</a> (Cotten.IO on
+                  Medium). <a href="https://blog.cotten.io/all">Full archive</a>.
+                </p>
+                <ul className="links home-writings-list">
+                  <WritingsLinks />
+                </ul>
+              </div>
+            </div>
           </div>
         </section>
       </main>
@@ -904,8 +904,8 @@ export default function HomePage() {
           <a href="https://www.linkedin.com/in/timcotten">LinkedIn</a> ·{' '}
           <a href="https://x.com/CottenIO">X</a> ·{' '}
           <a href="https://warpcast.com/cottenio">Farcaster</a> ·{' '}
-          <a href="mailto:tim@cotten.io">Personal Email</a> ·{' '}
-          <a href="mailto:tcotten2@gmu.edu">University Email</a>
+          <a href="mailto:tim@cotten.io">tim@cotten.io</a> ·{' '}
+          <a href="mailto:tcotten2@gmu.edu">tcotten2@gmu.edu</a>
         </p>
         <p>© 2026 Tim Cotten</p>
       </footer>

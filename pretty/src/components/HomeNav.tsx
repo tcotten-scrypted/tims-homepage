@@ -6,32 +6,30 @@ import {
   Briefcase,
   FlaskConical,
   FolderGit2,
-  GraduationCap,
   Layers,
   Lightbulb,
-  Mic,
   Rocket,
+  Rss,
   Trophy,
   UserRound,
 } from 'lucide-react'
 
 /** Order matches `HomePage` main column top → bottom (after splash). */
 const SECTION_NAV: { href: string; label: string; icon: LucideIcon }[] = [
-  { href: '#home-intro', label: 'About', icon: UserRound },
-  { href: '#thesis', label: 'Thesis', icon: Lightbulb },
-  { href: '#building', label: 'Building', icon: Rocket },
-  { href: '#skills', label: 'Skills', icon: Layers },
-  { href: '#hackathon-wins', label: 'Hackathons', icon: Trophy },
-  { href: '#research-contributions', label: 'Research', icon: FlaskConical },
-  { href: '#public-repositories', label: 'Repos', icon: FolderGit2 },
-  { href: '#work-experience', label: 'Experience', icon: Briefcase },
-  { href: '#education', label: 'Education', icon: GraduationCap },
-  { href: '#talks-presentations', label: 'Talks', icon: Mic },
-  { href: '#media', label: 'Media', icon: BookOpen },
+  { href: '/#home-intro', label: 'About', icon: UserRound },
+  { href: '/#updates', label: 'Updates', icon: Rss },
+  { href: '/#thesis', label: 'Thesis', icon: Lightbulb },
+  { href: '/#building', label: 'Building', icon: Rocket },
+  { href: '/#skills', label: 'Skills', icon: Layers },
+  { href: '/#hackathon-wins', label: 'Hackathons', icon: Trophy },
+  { href: '/#research-contributions', label: 'Research', icon: FlaskConical },
+  { href: '/#public-repositories', label: 'Repos', icon: FolderGit2 },
+  { href: '/#career', label: 'Career', icon: Briefcase },
+  { href: '/#media', label: 'Media', icon: BookOpen },
 ]
 
 const TOP_ITEM = {
-  href: '#top',
+  href: '/#top',
   label: 'Top of page',
   icon: ArrowUpToLine,
 } as const
