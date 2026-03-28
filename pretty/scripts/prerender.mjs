@@ -47,6 +47,11 @@ function buildPage(innerHtml) {
   return template.slice(0, idx) + `<div id="root">${innerHtml}</div>` + template.slice(idx + ROOT_MARKER.length)
 }
 
+/** Home + /latest + /updates use home-shell CSS; SSR HTML must set this so Critters inlines body.home-shell rules (e.g. contained splash). Client useEffect also adds it. */
+function applyHomeShellBody(html) {
+  return html.replace('<body>', '<body class="home-shell">')
+}
+
 /**
  * @param {string} html
  * @param {{ title: string; canonical: string; ogUrl: string; ogTitle: string }} m
@@ -100,6 +105,7 @@ for (const { pathname, outFile, meta } of routes) {
   if (meta) {
     out = applySubpageMeta(out, meta)
   }
+  out = applyHomeShellBody(out)
   if (pathname !== '/') {
     mkdirSync(path.dirname(outFile), { recursive: true })
   }

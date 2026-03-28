@@ -26,6 +26,9 @@ const critters = new Critters({
   pruneSource: true,
   fonts: false,
   logLevel: 'warn',
+  // Critters matches selectors from [data-critters-container] only, so `body.home-shell …` never matches.
+  // Home needs body vars + contained splash on first paint (widescreen).
+  allowRules: [/^body\.home-shell$/, /^body\.home-shell \.splash-banner$/],
 })
 
 for (const file of htmlFiles) {

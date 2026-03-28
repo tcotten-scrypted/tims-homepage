@@ -285,9 +285,6 @@ export default function HomePage() {
   return (
     <div id="top">
       <HomeJsonLd />
-      <a href="#home-intro" className="home-skip-link">
-        Skip to main content
-      </a>
       <div data-critters-container>
         <HomeNav />
         <SplashBanner />

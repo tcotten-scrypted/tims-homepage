@@ -47,7 +47,6 @@ body.home-shell .home-main h2,
 body.home-shell .home-main h3,
 body.home-shell .home-placeholder,
 body.home-shell .home-placeholder *,
-body.home-shell .home-skip-link,
 body.home-shell .site-header-name,
 body.home-shell .hero-pill,
 body.home-shell .hero-pill *,
@@ -62,27 +61,6 @@ body.home-shell .home-skills-cloud__label,
 body.home-shell .home-skill-pill,
 body.home-shell code {
   font-family: var(--font-ui) !important;
-}
-
-.home-skip-link {
-  position: absolute;
-  left: -9999px;
-  top: 0;
-  z-index: 3000;
-  padding: 0.65rem 1rem;
-  background: var(--home-accent);
-  color: #fff !important;
-  font-weight: 600;
-  font-size: 0.9rem;
-  text-decoration: none;
-  border-radius: 0 0 6px 6px;
-}
-
-.home-skip-link:focus {
-  left: 1rem;
-  top: 0;
-  outline: 2px solid var(--home-ink);
-  outline-offset: 2px;
 }
 
 /* Nav */
@@ -432,9 +410,6 @@ body.home-shell .splash-banner {
   box-shadow:
     0 24px 48px rgba(15, 10, 40, 0.12),
     0 0 0 1px var(--home-line);
-}
-
-body.home-shell .splash-banner__video {
   max-height: min(52vh, 520px);
 }
 

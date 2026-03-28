@@ -15,10 +15,6 @@ export default function LatestUpdatesPage() {
 
   return (
     <div id="top">
-      <a href="#latest-updates-heading" className="home-skip-link">
-        Skip to main content
-      </a>
-
       <main id="main-content" className="home-main home-main--subpage" lang="en">
         <section className="home-section home-section--muted" aria-labelledby="latest-updates-heading">
           <div data-critters-container>

@@ -45,14 +45,31 @@ h4 {
     radial-gradient(ellipse 75% 65% at 88% 92%, #f0d2c7 0%, transparent 55%),
     radial-gradient(ellipse 80% 70% at 8% 95%, #eed7df 0%, transparent 50%),
     radial-gradient(ellipse 120% 90% at 48% 48%, #f0d2c7 0%, transparent 62%);
+  /* Reserve height before video/poster decode (1280×336 hero); cap matches video treatment */
+  aspect-ratio: 1280 / 336;
+  max-height: min(42vh, 420px);
 }
 
 .splash-banner__video {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
-  max-height: min(42vh, 420px);
+  height: 100%;
   object-fit: cover;
   display: block;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.splash-banner__video--ready {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash-banner__video,
+  .splash-banner__video--ready {
+    transition: none;
+  }
 }
 
 .splash-banner__overlay {
