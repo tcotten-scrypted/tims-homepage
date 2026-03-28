@@ -1,0 +1,545 @@
+{
+    "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+    "basics": {
+      "name": "Tim Cotten",
+      "label": "Founder, AI Engineer, Researcher, and Adjunct Instructor",
+      "image": "https://cotten.io/profile_avatar.jpg",
+      "email": "tim@cotten.io",
+      "url": "https://cotten.io",
+      "summary": "Founder, engineer, and researcher focused on autonomous AI agents, decentralized systems, agent economies, and game-inspired AI design. Founder & CEO of Scrypted. Adjunct Instructor at George Mason University teaching Generative AI in Game Development. Formerly built AI systems for virtual economies in EA online worlds.",
+      "location": {
+        "city": "Warrenton",
+        "region": "Virginia",
+        "countryCode": "US"
+      },
+      "profiles": [
+        {
+          "network": "LinkedIn",
+          "username": "timcotten",
+          "url": "https://www.linkedin.com/in/timcotten"
+        },
+        {
+          "network": "X",
+          "username": "CottenIO",
+          "url": "https://x.com/CottenIO"
+        },
+        {
+          "network": "Farcaster",
+          "username": "cottenio",
+          "url": "https://warpcast.com/cottenio"
+        }
+      ]
+    },
+    "work": [
+      {
+        "name": "Scrypted",
+        "position": "Founder & CEO",
+        "location": "Washington DC metro area",
+        "url": "https://scrypted.ai",
+        "startDate": "2022-01",
+        "endDate": "",
+        "summary": "Building decentralized infrastructure for autonomous AI agents, including the Scrypted Network and related agent coordination infrastructure.",
+        "highlights": [
+          "Raised $1.5M in pre-seed funding",
+          "Built a community of 10k+ token holders",
+          "Contributed to ERC-8004",
+          "Won x402-related hackathons",
+          "Built and launched Delula as a consumer-facing proof of an autonomous business"
+        ]
+      },
+      {
+        "name": "George Mason University",
+        "position": "Adjunct Instructor",
+        "location": "Fairfax, Virginia",
+        "url": "https://www.gmu.edu",
+        "startDate": "2024-08",
+        "endDate": "",
+        "summary": "Teaching George Mason University's first Generative AI in Game Development course.",
+        "highlights": [
+          "Launched and teaches the first Generative AI in Game Development course"
+        ]
+      },
+      {
+        "name": "Agilla Pro",
+        "position": "CTO",
+        "location": "",
+        "url": "",
+        "startDate": "2012-04",
+        "endDate": "2021-12",
+        "summary": "Led technical strategy and development for APIs, SaaS systems, payment rails, predictive modeling, address verification, and security-aligned infrastructure.",
+        "highlights": [
+          "Built APIs and SaaS systems",
+          "Worked on payment rails and PCI/DSS-aligned security",
+          "Developed predictive modeling and address verification systems",
+          "Led growth optimization initiatives"
+        ]
+      },
+      {
+        "name": "KaBOOM!",
+        "position": "Director of Online Development",
+        "location": "Washington, DC",
+        "url": "https://www.kaboom.org",
+        "startDate": "2011-05",
+        "endDate": "2012-05",
+        "summary": "Built mobile and web products and GIS-driven mapping tools.",
+        "highlights": [
+          "Developed mobile and web products",
+          "Built GIS-driven mapping tools"
+        ]
+      },
+      {
+        "name": "IdeaFabrik / Second Star Interactive",
+        "position": "Senior Technical Designer",
+        "location": "Centreville, Virginia",
+        "url": "",
+        "startDate": "2011-01",
+        "endDate": "2011-05",
+        "summary": "Built social games and contributed to toolchains and game systems.",
+        "highlights": [
+          "Built social games",
+          "Contributed to game development toolchains"
+        ]
+      },
+      {
+        "name": "New Zhili / Eduwise",
+        "position": "Design Director",
+        "location": "Reston, Virginia",
+        "url": "",
+        "startDate": "2010-04",
+        "endDate": "2011-01",
+        "summary": "Directed design and engineering for an MMO-scale title.",
+        "highlights": [
+          "Led design and engineering for an MMO-scale game"
+        ]
+      },
+      {
+        "name": "Mythic Entertainment / Electronic Arts",
+        "position": "Lead Game Developer",
+        "location": "Fairfax, Virginia",
+        "url": "https://www.ea.com",
+        "startDate": "2007-12",
+        "endDate": "2010-02",
+        "summary": "Managed Ultima Online live events and contributed to the Stygian Abyss expansion.",
+        "highlights": [
+          "Managed Ultima Online live events",
+          "Contributed to the Stygian Abyss expansion"
+        ]
+      },
+      {
+        "name": "Electronic Arts",
+        "position": "Game Developer",
+        "location": "Redwood City, California",
+        "url": "https://www.ea.com",
+        "startDate": "2005-09",
+        "endDate": "2007-12",
+        "summary": "Built NPC AI systems and simulation behaviors for online game worlds.",
+        "highlights": [
+          "Developed NPC AI systems",
+          "Built simulation behaviors for online worlds"
+        ]
+      }
+    ],
+    "volunteer": [],
+    "education": [
+      {
+        "institution": "Brigham Young University",
+        "url": "https://www.byu.edu",
+        "area": "",
+        "studyType": "",
+        "startDate": "",
+        "endDate": "",
+        "score": "",
+        "courses": [],
+        "summary": "Dropout."
+      }
+    ],
+    "awards": [
+      {
+        "title": "Multiple Track Wins",
+        "date": "2025-11",
+        "awarder": "Coinbase Code NYC",
+        "summary": "Won multiple tracks including x402-hpke and a CDP SQL + GameFi entry."
+      },
+      {
+        "title": "Hackathon Winner",
+        "date": "2025-11",
+        "awarder": "ETHGlobal Buenos Aires",
+        "summary": "Won for x402autopay, a Chromium extension for HTTP 402 and EIP-3009 USDC flows."
+      },
+      {
+        "title": "Hackathon Winner",
+        "date": "2024-11",
+        "awarder": "EVE Online Frontier",
+        "summary": "Won for a decentralized agent-driven mission system with generative art and NPC dialogue."
+      },
+      {
+        "title": "Hackathon Winner",
+        "date": "2023-11",
+        "awarder": "ETHGlobal Istanbul",
+        "summary": "Won for a ZK-backed AI auto-battler on Dojo and Starknet."
+      }
+    ],
+    "certificates": [],
+    "publications": [
+      {
+        "name": "Autonomous Virtual Beings",
+        "publisher": "Cotten.IO (Medium)",
+        "releaseDate": "2024-01-05",
+        "url": "https://blog.cotten.io/autonomous-virtual-beings-aaef7cbbe5de",
+        "summary": "A foundational thesis around self-owning digital lifeforms and autonomous digital entities."
+      },
+      {
+        "name": "The Commit-Reveal Pairwise Comparison Protocol (CRPC)",
+        "publisher": "Cotten.IO (Medium)",
+        "releaseDate": "2024-10-02",
+        "url": "https://blog.cotten.io/the-commit-reveal-pairwise-comparison-protocol-crpc-e1434fff94c4",
+        "summary": "A decentralized consensus primitive for non-deterministic workloads and agent coordination."
+      },
+      {
+        "name": "Persistent Stochastic Ablation (PSA) for MLPs",
+        "publisher": "Scrypted (technical report, GitHub)",
+        "releaseDate": "2024-10",
+        "url": "https://github.com/tcotten-scrypted/persistent-stochastic-ablation-mlp/blob/23a02dc86592a52848ba1491bc0b5d4dde9d3168/paper/pdf/Persistent%20Stochastic%20Ablation%20-%20Paper%201%20-%20SimpleMLP.pdf",
+        "summary": "A neural network training method combining pruning, dropout, and game-inspired techniques."
+      },
+      {
+        "name": "Scrypted Raises $1.5M to Build Decentralized AI Agents & the Scrypted Network",
+        "publisher": "Cotten.IO (Medium)",
+        "releaseDate": "2024-12-04",
+        "url": "https://blog.cotten.io/scrypted-raises-1-5m-to-build-decentralized-ai-agents-the-inori-network-for-web4-7a6c71592b36",
+        "summary": "Announcement of Scrypted’s $1.5M pre-seed close, investors, and roadmap for the Scrypted Network and AVBs."
+      },
+      {
+        "name": "USDC Stablecoin Chaos Explained in 3 Easy Charts",
+        "publisher": "Cotten.IO (Medium)",
+        "releaseDate": "2023-03-11",
+        "url": "https://blog.cotten.io/usdc-stablecoin-chaos-explained-in-3-easy-charts-7fa6a395ac93",
+        "summary": "Explainer on USDC de-peg dynamics and market structure with simple charts."
+      },
+      {
+        "name": "Bitcoin is Deflationary, Inflationary, & Both/Neither",
+        "publisher": "Cotten.IO (Medium)",
+        "releaseDate": "2023-02-14",
+        "url": "https://blog.cotten.io/bitcoin-is-deflationary-inflationary-both-neither-bde3056dcafa",
+        "summary": "Essay on Bitcoin supply, issuance, and how deflationary/inflationary labels map to reality."
+      },
+      {
+        "name": "That Time We Burned Down Players’ Houses in Ultima Online",
+        "publisher": "Cotten.IO (Medium)",
+        "releaseDate": "2022-10-03",
+        "url": "https://blog.cotten.io/that-time-we-burned-down-players-houses-in-ultima-online-7e556618c8f0",
+        "summary": "Postmortem-style story from live-ops and player housing in Ultima Online."
+      },
+      {
+        "name": "Why I Quit My Job On New Year’s",
+        "publisher": "Cotten.IO (Medium)",
+        "releaseDate": "2022-01-01",
+        "url": "https://blog.cotten.io/why-i-quit-my-job-on-new-years-df3ee8dbfb13",
+        "summary": "Personal essay on leaving a role at the start of a new year."
+      },
+      {
+        "name": "The $150k Discord Crypto Hack",
+        "publisher": "Cotten.IO (Medium)",
+        "releaseDate": "2021-12-21",
+        "url": "https://blog.cotten.io/the-150k-discord-crypto-hack-b3dde6698072",
+        "summary": "Breakdown of a Discord-adjacent crypto theft incident and mechanics."
+      },
+      {
+        "name": "Tracing the Twitter Hacked Bitcoins",
+        "publisher": "Cotten.IO (Medium)",
+        "releaseDate": "2020-07-31",
+        "url": "https://blog.cotten.io/tracing-the-twitter-hacked-bitcoins-47094eee6c5f",
+        "summary": "On-chain tracing write-up tied to the 2020 Twitter account compromise and Bitcoin flows."
+      }
+    ],
+    "skills": [
+      {
+        "name": "Programming Languages",
+        "level": "",
+        "keywords": [
+          "Python",
+          "TypeScript",
+          "JavaScript",
+          "Rust",
+          "Solidity",
+          "Cairo",
+          "Move",
+          "SQL",
+          "C",
+          "C++",
+          "C#",
+          "Lua",
+          "Prolog",
+          "Lisp",
+          "PHP",
+          "Ruby",
+          "Java"
+        ]
+      },
+      {
+        "name": "Web Frameworks",
+        "level": "",
+        "keywords": [
+          "React",
+          "Next.js",
+          "Node.js",
+          "Flask",
+          "FastAPI",
+          "Django",
+          "Ruby on Rails"
+        ]
+      },
+      {
+        "name": "AI / ML",
+        "level": "",
+        "keywords": [
+          "PyTorch",
+          "JAX",
+          "TensorFlow",
+          "scikit-learn",
+          "Hugging Face Transformers"
+        ]
+      },
+      {
+        "name": "Agent Frameworks",
+        "level": "",
+        "keywords": [
+          "LangChain",
+          "LangGraph",
+          "LangFuse",
+          "AutoGPT",
+          "OpenAgents",
+          "AVB",
+          "ElizaOS",
+          "DayDreams"
+        ]
+      },
+      {
+        "name": "Game Engines",
+        "level": "",
+        "keywords": [
+          "Unity",
+          "Three.js",
+          "Babylon.js"
+        ]
+      },
+      {
+        "name": "Blockchain / Web3",
+        "level": "",
+        "keywords": [
+          "Solidity",
+          "Cairo",
+          "Move",
+          "Hardhat",
+          "Foundry",
+          "Forge",
+          "Anvil",
+          "Circom",
+          "Noir",
+          "zk-SNARKs",
+          "zk-STARKs",
+          "ZK-rollups",
+          "Slither",
+          "Aderyn",
+          "Echidna",
+          "Medusa",
+          "OpenZeppelin Contracts",
+          "ERC standards",
+          "wagmi",
+          "viem",
+          "ethers.js",
+          "CDP",
+          "Alchemy",
+          "Infura",
+          "The Graph",
+          "Tenderly",
+          "EVM interoperability (EIL)",
+          "Wire Network",
+          "Chainlink"
+        ]
+      },
+      {
+        "name": "DevOps / Infrastructure",
+        "level": "",
+        "keywords": [
+          "Linux",
+          "Windows",
+          "macOS",
+          "Docker",
+          "Kubernetes",
+          "Terraform",
+          "GitHub Actions",
+          "Jenkins",
+          "Ansible",
+          "Prometheus",
+          "Grafana",
+          "OpenTelemetry",
+          "AWS EC2",
+          "ELB",
+          "Multi-AZ",
+          "Auto Scaling",
+          "Lambda",
+          "Bedrock",
+          "Guardrails",
+          "SageMaker"
+        ]
+      },
+      {
+        "name": "Security",
+        "level": "",
+        "keywords": [
+          "PCI/DSS",
+          "Zero Trust",
+          "IAM hardening",
+          "DevSecOps",
+          "OWASP LLM Top 10",
+          "Cryptography",
+          "Blockchain security",
+          "ZKP",
+          "Secure smart contract testing"
+        ]
+      }
+    ],
+    "languages": [
+      {
+        "language": "English",
+        "fluency": "Native"
+      },
+      {
+        "language": "Japanese",
+        "fluency": ""
+      }
+    ],
+    "interests": [
+      {
+        "name": "Research",
+        "keywords": [
+          "Persistent game AI",
+          "Decentralized systems",
+          "Autonomous agents",
+          "Agent coordination",
+          "Machine economy",
+          "Attention markets",
+          "World models",
+          "Virtual economies"
+        ]
+      }
+    ],
+    "references": [],
+    "projects": [
+      {
+        "name": "Scrypted Network",
+        "description": "A network described as a matchmaker between AI agents and the world, built around attention auctions and agent coordination infrastructure.",
+        "highlights": [
+          "Focus on agent discovery and attention markets",
+          "Supports coordination between autonomous agents and the broader world"
+        ],
+        "keywords": [
+          "agent network",
+          "attention auctions",
+          "autonomous agents",
+          "coordination"
+        ],
+        "startDate": "2022-01",
+        "endDate": "",
+        "url": "https://scrypted.ai",
+        "roles": [
+          "Founder",
+          "Builder"
+        ],
+        "entity": "Scrypted",
+        "type": "application"
+      },
+      {
+        "name": "Delula",
+        "description": "A consumer-facing proof of an autonomous business, described as a viral content platform run by autonomous agents orchestrated via Scrypted Network infrastructure.",
+        "highlights": [
+          "Consumer-facing autonomous business concept",
+          "Operated by autonomous agents"
+        ],
+        "keywords": [
+          "autonomous business",
+          "consumer app",
+          "agent orchestration"
+        ],
+        "startDate": "2024-06",
+        "endDate": "",
+        "url": "https://delu.la",
+        "roles": [
+          "Builder"
+        ],
+        "entity": "Scrypted",
+        "type": "application"
+      },
+      {
+        "name": "Autonomous Virtual Beings (AVBs)",
+        "description": "A foundational thesis around self-owning digital lifeforms and autonomous digital entities.",
+        "highlights": [
+          "Research at the intersection of autonomous agents and digital lifeforms"
+        ],
+        "keywords": [
+          "AVBs",
+          "digital lifeforms",
+          "autonomous beings"
+        ],
+        "startDate": "2024-01",
+        "endDate": "",
+        "url": "https://blog.cotten.io/autonomous-virtual-beings-aaef7cbbe5de",
+        "roles": [
+          "Author",
+          "Researcher"
+        ],
+        "entity": "",
+        "type": "research"
+      },
+      {
+        "name": "Persistent Stochastic Ablation (PSA) for MLPs",
+        "description": "A neural network training method combining pruning, dropout, and game-inspired techniques.",
+        "highlights": [
+          "Combines pruning and dropout with game-inspired training ideas"
+        ],
+        "keywords": [
+          "MLPs",
+          "training methods",
+          "ablation",
+          "pruning",
+          "dropout"
+        ],
+        "startDate": "2024-10",
+        "endDate": "",
+        "url": "https://github.com/tcotten-scrypted/persistent-stochastic-ablation-mlp",
+        "roles": [
+          "Researcher"
+        ],
+        "entity": "",
+        "type": "research"
+      },
+      {
+        "name": "Commit-Reveal Pairwise Comparison Protocol (CRPC)",
+        "description": "A decentralized consensus primitive for non-deterministic workloads and agent coordination.",
+        "highlights": [
+          "Designed for non-deterministic workloads",
+          "Supports decentralized coordination"
+        ],
+        "keywords": [
+          "consensus",
+          "commit-reveal",
+          "decentralized coordination"
+        ],
+        "startDate": "2024-10",
+        "endDate": "",
+        "url": "https://blog.cotten.io/the-commit-reveal-pairwise-comparison-protocol-crpc-e1434fff94c4",
+        "roles": [
+          "Author",
+          "Researcher"
+        ],
+        "entity": "",
+        "type": "research"
+      }
+    ],
+    "meta": {
+      "canonical": "https://cotten.io",
+      "version": "v1.0.0",
+      "lastModified": "2026-03-28"
+    }
+  }

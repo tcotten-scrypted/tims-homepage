@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { GraduationCap, Mail } from 'lucide-react'
+import { Braces, FileText, GraduationCap, Mail } from 'lucide-react'
 import { BoardyIntroButton } from 'boardy-intro-react'
 import 'boardy-intro-react/style.css'
 import { HomeFeedSection } from '../components/HomeFeedSection'
@@ -890,6 +890,50 @@ export default function HomePage() {
                   <WritingsLinks />
                 </ul>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="resources"
+          className="home-section home-section--surface"
+          aria-labelledby="resources-heading"
+        >
+          <div className="home-main__prose home-main__prose--wide">
+            <p className="home-section__kicker">Resources</p>
+            <h2 id="resources-heading">Resume / CV</h2>
+            <p className="intro">
+              Human and machine readable options for software, agents, and automated parsers.
+            </p>
+            <div className="home-resources__grid" role="list">
+              <a
+                className="home-resources-card home-resources-card--human"
+                href="/TimCottenCV.pdf"
+                download="TimCottenCV.pdf"
+                role="listitem"
+                aria-label="Download resume as PDF"
+              >
+                <span className="home-resources-card__icon" aria-hidden>
+                  <FileText size={28} strokeWidth={1.75} />
+                </span>
+                <span className="home-resources-card__badge">For humans</span>
+                <span className="home-resources-card__meta">Printable resume · PDF</span>
+              </a>
+              <a
+                className="home-resources-card home-resources-card--machine"
+                href="/TimCottenCV.json"
+                download="TimCottenCV.json"
+                role="listitem"
+                aria-label="Download JSON Resume"
+              >
+                <span className="home-resources-card__icon" aria-hidden>
+                  <Braces size={28} strokeWidth={1.75} />
+                </span>
+                <span className="home-resources-card__badge">For machines</span>
+                <span className="home-resources-card__meta">
+                  JSON Resume schema · .json
+                </span>
+              </a>
             </div>
           </div>
         </section>
