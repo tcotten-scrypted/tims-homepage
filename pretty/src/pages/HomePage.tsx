@@ -459,6 +459,7 @@ export default function HomePage() {
               <p className="building-cta">
                 Raising our seed round. Get my attention via a16z, PTC, or Boardy:{' '}
                 <BoardyIntroButton
+                  boardyIconSrc="/boardy_profile_icon.jpg"
                   introMessage="Hi Boardy, I'd like to connect with Tim Cotten (Scrypted) about what I'm building. Happy to share context so you can route this the right way."
                   label="Get an intro from Boardy"
                   className="building-cta-button"

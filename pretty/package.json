@@ -11,7 +11,8 @@
     "deploy": "node scripts/deploy-s3.mjs",
     "deploy:prod": "npm run build && npm run deploy",
     "icons": "node scripts/generate-icons.mjs",
-    "resize-profile-avatar": "node scripts/resize-profile-avatar.mjs"
+    "resize-profile-avatar": "node scripts/resize-profile-avatar.mjs",
+    "resize-boardy-profile-icon": "node scripts/resize-boardy-profile-icon.mjs"
   },
   "dependencies": {
     "boardy-intro-react": "file:./vendor/boardyai-cta/packages/boardy-intro-react",
