@@ -1,6 +1,9 @@
 /**
  * Curated homepage feed: X posts (react-tweet) and manual link cards (static OG-style fields).
  * Order: newest first (as listed). Add `link` entries to `HOME_FEED_ITEMS` anytime.
+ *
+ * `HOME_FEED_ITEMS.length` is the grid tile count on /latest and /updates (one cell per entry;
+ * a tweet thread is still a single item with multiple ids).
  */
 export type HomeFeedTweetItem = {
   kind: 'tweet'

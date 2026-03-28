@@ -28,7 +28,27 @@ const critters = new Critters({
   logLevel: 'warn',
   // Critters matches selectors from [data-critters-container] only, so `body.home-shell …` never matches.
   // Home needs body vars + contained splash on first paint (widescreen).
-  allowRules: [/^body\.home-shell$/, /^body\.home-shell \.splash-banner$/],
+  allowRules: [
+    /^body\.home-shell$/,
+    /^body\.home-shell \.splash-banner$/,
+    // Feed uses react-tweet under body.home-shell; Critters root is [data-critters-container].
+    /^body\.home-shell \.home-feed-tile__post \.react-tweet-theme$/,
+    // Subpages: [data-critters-container] sits *inside* <main>/<section>, so layout + shell type
+    // for ancestors is never "seen" by Critters unless we force these selectors.
+    /^\.home-main$/,
+    /^\.home-main--subpage$/,
+    /^\.home-section$/,
+    /^\.home-section--muted$/,
+    /^\.home-main__prose$/,
+    /^\.home-main__prose--wide$/,
+    /^body\.home-shell \.home-section__kicker$/,
+    /^body\.home-shell \.home-main h1$/,
+    /^body\.home-shell \.home-main h2$/,
+    /^body\.home-shell \.home-main h3$/,
+    /^body\.home-shell \.home-nav/,
+    /^body\.home-shell p$/,
+    /^body\.home-shell li$/,
+  ],
 })
 
 for (const file of htmlFiles) {

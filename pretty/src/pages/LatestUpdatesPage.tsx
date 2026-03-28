@@ -33,11 +33,11 @@ export default function LatestUpdatesPage() {
                 <Link to="/">← Back to home</Link>
               </p>
             </div>
-          </div>
 
-          <div className="home-feed__card home-feed__card--flat">
-            <div className="home-feed__card-body home-feed__card-body--flush">
-              <FeedDisplay items={HOME_FEED_ITEMS} skeletonCount={6} />
+            <div className="home-feed__card home-feed__card--flat">
+              <div className="home-feed__card-body home-feed__card-body--flush">
+                <FeedDisplay items={HOME_FEED_ITEMS} />
+              </div>
             </div>
           </div>
         </section>

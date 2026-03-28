@@ -83,27 +83,6 @@ function HomeFeedStaticFallback({ items }: { items: HomeFeedItem[] }) {
   )
 }
 
-function FeedSkeleton({ count }: { count: number }) {
-  return (
-    <div className="home-feed__grid" aria-hidden>
-      {Array.from({ length: count }, (_, i) => (
-        <div key={i} className="home-feed-tile home-feed-tile--skeleton light">
-          <div className="home-feed-tweet-unit">
-            <div className="home-feed-tile__post">
-              <div className="home-feed-tile__main">
-                <div className="home-feed-tile__clip">
-                  <TweetSkeleton />
-                  <div className="home-feed-tile__fade" aria-hidden />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  )
-}
-
 function FeedLinkTile(props: Extract<HomeFeedItem, { kind: 'link' }>) {
   const { url, title, description, image, siteName } = props
   return (
@@ -134,6 +113,45 @@ function FeedLinkTile(props: Extract<HomeFeedItem, { kind: 'link' }>) {
   )
 }
 
+/** SSR + first client paint: same grid/cell/tile shell as live feed, no useTweet (SWR breaks prerender). */
+function FeedTweetTileShell({ ids }: { ids: string[] }) {
+  return (
+    <article className="home-feed-tile home-feed-tile--tweet light" aria-label="X post preview">
+      {ids.map((id, i) => (
+        <div
+          key={id}
+          className={i > 0 ? 'home-feed-tweet-unit home-feed-tweet-unit--follows' : 'home-feed-tweet-unit'}
+        >
+          <div className="home-feed-tile__post home-feed-tile__post--placeholder">
+            <div className="home-feed-tile__main">
+              <div className="home-feed-tile__clip">
+                <TweetSkeleton />
+                <div className="home-feed-tile__fade" aria-hidden />
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </article>
+  )
+}
+
+function FeedPrerenderShell({ items }: { items: HomeFeedItem[] }) {
+  return (
+    <div className="home-feed__grid">
+      {items.map((item) => (
+        <div key={item.kind === 'tweet' ? item.ids.join('-') : item.url} className="home-feed__cell">
+          {item.kind === 'tweet' ? (
+            <FeedTweetTileShell ids={item.ids} />
+          ) : (
+            <FeedLinkTile {...item} />
+          )}
+        </div>
+      ))}
+    </div>
+  )
+}
+
 function CompactTweetAuthorRow({ tweet }: { tweet: EnrichedTweet }) {
   const { user } = tweet
   return (
@@ -157,7 +175,7 @@ function CompactFeedTweet({ id, showTopBorder }: { id: string; showTopBorder?: b
   if (isLoading) {
     return (
       <div className={showTopBorder ? 'home-feed-tweet-unit home-feed-tweet-unit--follows' : 'home-feed-tweet-unit'}>
-        <div className="home-feed-tile__post">
+        <div className="home-feed-tile__post home-feed-tile__post--placeholder">
           <div className="home-feed-tile__main">
             <div className="home-feed-tile__clip">
               <TweetSkeleton />
@@ -172,7 +190,7 @@ function CompactFeedTweet({ id, showTopBorder }: { id: string; showTopBorder?: b
   if (error || !data) {
     return (
       <div className={showTopBorder ? 'home-feed-tweet-unit home-feed-tweet-unit--follows' : 'home-feed-tweet-unit'}>
-        <div className="home-feed-tile__post">
+        <div className="home-feed-tile__post home-feed-tile__post--placeholder">
           <div className="home-feed-tile__main">
             <div className="home-feed-tile__clip">
               <TweetNotFound error={error} />
@@ -266,28 +284,26 @@ function FeedItems({ items }: { items: HomeFeedItem[] }) {
   )
 }
 
-function FeedHydratedBody({ items, skeletonCount }: { items: HomeFeedItem[]; skeletonCount: number }) {
-  const [ready, setReady] = useState(false)
-  useEffect(() => {
-    const id = requestAnimationFrame(() => setReady(true))
-    return () => cancelAnimationFrame(id)
-  }, [])
-  if (!ready) return <FeedSkeleton count={skeletonCount} />
+function FeedHydratedBody({ items }: { items: HomeFeedItem[] }) {
+  const [live, setLive] = useState(false)
+  useEffect(() => setLive(true), [])
+  if (!live) return <FeedPrerenderShell items={items} />
   return <FeedItems items={items} />
 }
 
 export type FeedDisplayProps = {
   items: HomeFeedItem[]
-  /** Skeleton tiles while client-only tweet mount prepares */
-  skeletonCount?: number
 }
 
-export function FeedDisplay({ items, skeletonCount }: FeedDisplayProps) {
-  const n = skeletonCount ?? Math.min(4, Math.max(1, items.length))
+/**
+ * Prerender/SSR: one tile per feed item (same dimensions as live grid); tweet slots use TweetSkeleton.
+ * After mount, swaps to SWR-backed tiles without changing column layout.
+ */
+export function FeedDisplay({ items }: FeedDisplayProps) {
   return (
     <>
       <HomeFeedStaticFallback items={items} />
-      <FeedHydratedBody items={items} skeletonCount={n} />
+      <FeedHydratedBody items={items} />
     </>
   )
 }

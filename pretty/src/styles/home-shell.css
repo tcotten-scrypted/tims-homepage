@@ -1657,7 +1657,9 @@ body.home-shell .home-nav__links a {
   );
 }
 
-.home-feed-tile--skeleton .home-feed-tile__post {
+/* TweetSkeleton / not-found: same shell as old full-grid skeleton tiles */
+.home-feed-tile--skeleton .home-feed-tile__post,
+.home-feed-tile__post--placeholder {
   border-style: dashed;
   border-color: rgba(79, 43, 212, 0.22);
   background: rgba(255, 255, 255, 0.92);
