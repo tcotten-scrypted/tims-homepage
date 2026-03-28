@@ -78,6 +78,6 @@ export function getHomeFeedPreviewItems(): HomeFeedItem[] {
 export const HOME_FEED_PROFILE = {
   name: 'Tim Cotten',
   handle: '@CottenIO',
-  avatarSrc: '/profile_avatar.png',
+  avatarSrc: '/profile_avatar.jpg',
   xUrl: 'https://x.com/CottenIO',
 } as const

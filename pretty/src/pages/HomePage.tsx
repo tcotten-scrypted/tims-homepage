@@ -285,65 +285,68 @@ export default function HomePage() {
   return (
     <div id="top">
       <HomeJsonLd />
-      <a href="#main-content" className="home-skip-link">
+      <a href="#home-intro" className="home-skip-link">
         Skip to main content
       </a>
-      <HomeNav />
-      <SplashBanner />
+      <div data-critters-container>
+        <HomeNav />
+        <SplashBanner />
+        <div className="home-main home-main--intro-only">
+          <section
+            id="home-intro"
+            className="home-section home-hero"
+            aria-labelledby="home-tagline"
+          >
+            <div className="home-hero__grid">
+              <div className="home-main__prose">
+                <p className="home-section__kicker">Profile</p>
+                <p id="home-tagline" className="home-hero__lede">
+                  Building a monopoly in the machine economy; previously built the AI
+                  systems that powered the virtual economies of EA&apos;s online worlds.
+                </p>
+                <p className="header-note">
+                  Also: Adjunct at George Mason University, teaching the first{' '}
+                  <em>Generative AI in Game Development</em> course. Office hours for
+                  undergrads and AI agents.
+                </p>
+              </div>
+              <aside className="home-hero__aside" aria-label="Highlights">
+                <div className="home-stats">
+                  <div className="home-stat">
+                    <span className="home-stat__value">$1.5M</span>
+                    <span className="home-stat__label">Pre-seed raised</span>
+                  </div>
+                  <div className="home-stat">
+                    <span className="home-stat__value">10k+ Community</span>
+                    <span className="home-stat__label">Token Holders</span>
+                  </div>
+                  <div className="home-stat">
+                    <span className="home-stat__value">ERC-8004</span>
+                    <span className="home-stat__label">Standards Contributor</span>
+                  </div>
+                  <div className="home-stat">
+                    <span className="home-stat__value">x402</span>
+                    <span className="home-stat__label">Hackathon wins</span>
+                  </div>
+                </div>
+              </aside>
+            </div>
+            <div className="home-cta-grid" role="list">
+              <a className="home-cta-tile" role="listitem" href="https://scrypted.ai">
+                <strong>Scrypted Network</strong>
+                <span>Agent discovery, workflows, and attention auctions.</span>
+              </a>
+              <a className="home-cta-tile" role="listitem" href="https://delu.la">
+                <strong>Delula</strong>
+                <span>Make viral content with an autonomous consumer product.</span>
+              </a>
+            </div>
+            <ProfileContactIcons />
+          </section>
+        </div>
+      </div>
 
       <main id="main-content" className="home-main" lang="en">
-        <section
-          id="home-intro"
-          className="home-section home-hero"
-          aria-labelledby="home-tagline"
-        >
-          <div className="home-hero__grid">
-            <div className="home-main__prose">
-              <p className="home-section__kicker">Profile</p>
-              <p id="home-tagline" className="home-hero__lede">
-                Building a monopoly in the machine economy; previously built the AI
-                systems that powered the virtual economies of EA&apos;s online worlds.
-              </p>
-              <p className="header-note">
-                Also: Adjunct at George Mason University, teaching the first{' '}
-                <em>Generative AI in Game Development</em> course. Office hours for
-                undergrads and AI agents.
-              </p>
-            </div>
-            <aside className="home-hero__aside" aria-label="Highlights">
-              <div className="home-stats">
-                <div className="home-stat">
-                  <span className="home-stat__value">$1.5M</span>
-                  <span className="home-stat__label">Pre-seed raised</span>
-                </div>
-                <div className="home-stat">
-                  <span className="home-stat__value">10k+ Community</span>
-                  <span className="home-stat__label">Token Holders</span>
-                </div>
-                <div className="home-stat">
-                  <span className="home-stat__value">ERC-8004</span>
-                  <span className="home-stat__label">Standards Contributor</span>
-                </div>
-                <div className="home-stat">
-                  <span className="home-stat__value">x402</span>
-                  <span className="home-stat__label">Hackathon wins</span>
-                </div>
-              </div>
-            </aside>
-          </div>
-          <div className="home-cta-grid" role="list">
-            <a className="home-cta-tile" role="listitem" href="https://scrypted.ai">
-              <strong>Scrypted Network</strong>
-              <span>Agent discovery, workflows, and attention auctions.</span>
-            </a>
-            <a className="home-cta-tile" role="listitem" href="https://delu.la">
-              <strong>Delula</strong>
-              <span>Make viral content with an autonomous consumer product.</span>
-            </a>
-          </div>
-          <ProfileContactIcons />
-        </section>
-
         <HomeFeedSection />
 
         {HOME_FRIENDS_SECTION_ENABLED ? <HomeFriendsSection /> : null}

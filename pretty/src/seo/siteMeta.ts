@@ -8,7 +8,7 @@ export const SITE_ORIGIN = 'https://cotten.io' as const
 export const siteUrls = {
   canonical: `${SITE_ORIGIN}/`,
   ogImage: `${SITE_ORIGIN}/og-image.jpg`,
-  profileImage: `${SITE_ORIGIN}/profile_avatar.png`,
+  profileImage: `${SITE_ORIGIN}/profile_avatar.jpg`,
 } as const
 
 /** PWA `name` (install prompt). */

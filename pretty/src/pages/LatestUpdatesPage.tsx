@@ -15,31 +15,33 @@ export default function LatestUpdatesPage() {
 
   return (
     <div id="top">
-      <a href="#main-content" className="home-skip-link">
+      <a href="#latest-updates-heading" className="home-skip-link">
         Skip to main content
       </a>
-      <HomeNav />
 
       <main id="main-content" className="home-main home-main--subpage" lang="en">
         <section className="home-section home-section--muted" aria-labelledby="latest-updates-heading">
-          <div className="home-main__prose home-main__prose--wide">
-            <p className="home-section__kicker">Latest</p>
-            <h1 id="latest-updates-heading">Latest updates</h1>
-            <p className="home-feed__intro">
-              Full feed from{' '}
-              <a href={HOME_FEED_PROFILE.xUrl} target="_blank" rel="noopener noreferrer">
-                {HOME_FEED_PROFILE.handle}
-              </a>
-              , plus curated links. Each X tile opens the post in a new tab.
-            </p>
-            <p className="home-subpage__back">
-              <Link to="/">← Back to home</Link>
-            </p>
+          <div data-critters-container>
+            <HomeNav />
+            <div className="home-main__prose home-main__prose--wide">
+              <p className="home-section__kicker">Latest</p>
+              <h1 id="latest-updates-heading">Latest updates</h1>
+              <p className="home-feed__intro">
+                Full feed from{' '}
+                <a href={HOME_FEED_PROFILE.xUrl} target="_blank" rel="noopener noreferrer">
+                  {HOME_FEED_PROFILE.handle}
+                </a>
+                , plus curated links. Each X tile opens the post in a new tab.
+              </p>
+              <p className="home-subpage__back">
+                <Link to="/">← Back to home</Link>
+              </p>
+            </div>
+          </div>
 
-            <div className="home-feed__card home-feed__card--flat">
-              <div className="home-feed__card-body home-feed__card-body--flush">
-                <FeedDisplay items={HOME_FEED_ITEMS} skeletonCount={6} />
-              </div>
+          <div className="home-feed__card home-feed__card--flat">
+            <div className="home-feed__card-body home-feed__card-body--flush">
+              <FeedDisplay items={HOME_FEED_ITEMS} skeletonCount={6} />
             </div>
           </div>
         </section>

@@ -451,6 +451,11 @@ body.home-shell .splash-banner__video {
   }
 }
 
+/* Hero/profile band: same width as .home-main but sits outside <main> (critters ATF wrapper). */
+.home-main--intro-only {
+  padding-bottom: 0;
+}
+
 .home-main__prose {
   max-width: 44rem;
 }

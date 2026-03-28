@@ -5,7 +5,7 @@ export function HeroPill() {
     <div className="hero-pill">
       <img
         className="hero-pill__avatar"
-        src="/profile_avatar.png"
+        src="/profile_avatar.jpg"
         alt=""
         width={72}
         height={72}

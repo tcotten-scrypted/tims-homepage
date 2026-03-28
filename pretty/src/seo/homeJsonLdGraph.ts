@@ -4,7 +4,7 @@ import { siteMeta } from './siteMeta'
 export function getHomeJsonLdGraph(origin: string) {
   const personId = `${origin}/#person`
   const pageUrl = `${origin}/`
-  const profileImage = `${origin}/profile_avatar.png`
+  const profileImage = `${origin}/profile_avatar.jpg`
   const ogImage = `${origin}/og-image.jpg`
 
   return {

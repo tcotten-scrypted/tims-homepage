@@ -249,7 +249,7 @@ export function HeroUxPlayground() {
           >
             <img
               className="hero-ux-avatar"
-              src="/profile_avatar.png"
+              src="/profile_avatar.jpg"
               alt=""
               width={112}
               height={112}
