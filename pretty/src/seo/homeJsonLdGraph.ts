@@ -1,9 +1,8 @@
 import { siteMeta } from './siteMeta'
 
-const PERSON_ID = 'https://www.cotten.io/#person'
-
 /** Canonical JSON-LD graph for the home page (same URLs as meta tags). */
 export function getHomeJsonLdGraph(origin: string) {
+  const personId = `${origin}/#person`
   const pageUrl = `${origin}/`
   const profileImage = `${origin}/profile_avatar.png`
   const ogImage = `${origin}/og-image.jpg`
@@ -17,7 +16,7 @@ export function getHomeJsonLdGraph(origin: string) {
         url: origin,
         name: siteMeta.ogSiteName,
         description: siteMeta.jsonLdSitePageDescription,
-        publisher: { '@id': PERSON_ID },
+        publisher: { '@id': personId },
         inLanguage: 'en-US',
       },
       {
@@ -27,7 +26,7 @@ export function getHomeJsonLdGraph(origin: string) {
         name: siteMeta.ogTitle,
         description: siteMeta.jsonLdSitePageDescription,
         isPartOf: { '@id': `${origin}/#website` },
-        about: { '@id': PERSON_ID },
+        about: { '@id': personId },
         inLanguage: 'en-US',
         primaryImageOfPage: {
           '@type': 'ImageObject',
@@ -39,7 +38,7 @@ export function getHomeJsonLdGraph(origin: string) {
       },
       {
         '@type': 'Person',
-        '@id': PERSON_ID,
+        '@id': personId,
         name: 'Tim Cotten',
         url: pageUrl,
         image: profileImage,

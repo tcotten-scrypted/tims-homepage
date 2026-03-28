@@ -17,6 +17,7 @@ import type { MediaDetails } from 'react-tweet/api'
 import 'react-tweet/theme.css'
 
 import type { HomeFeedItem } from '../feed/homeFeed'
+import { HOME_FEED_PROFILE } from '../feed/homeFeed'
 
 type EnrichedTweet = ReturnType<typeof enrichTweet>
 
@@ -51,6 +52,34 @@ function FeedTweetMediaPeek({ tweet }: { tweet: EnrichedTweet }) {
         </span>
       ) : null}
     </div>
+  )
+}
+
+/** Plain links + text in initial HTML for no-JS users and simple HTTP clients (see prerender). */
+function HomeFeedStaticFallback({ items }: { items: HomeFeedItem[] }) {
+  const xHandle = HOME_FEED_PROFILE.handle.replace(/^@/, '')
+  return (
+    <noscript>
+      <div className="home-feed__static-fallback">
+        <p className="home-feed__static-fallback-kicker">Open updates directly (JavaScript off)</p>
+        <ul className="home-feed__static-fallback-list">
+          {items.flatMap((item) =>
+            item.kind === 'link'
+              ? [
+                  <li key={item.url}>
+                    <a href={item.url}>{item.title}</a>
+                    {item.description ? <> — {item.description}</> : null}
+                  </li>,
+                ]
+              : item.ids.map((id) => (
+                  <li key={id}>
+                    <a href={`https://x.com/${xHandle}/status/${id}`}>Post on X ({id})</a>
+                  </li>
+                )),
+          )}
+        </ul>
+      </div>
+    </noscript>
   )
 }
 
@@ -255,5 +284,10 @@ export type FeedDisplayProps = {
 
 export function FeedDisplay({ items, skeletonCount }: FeedDisplayProps) {
   const n = skeletonCount ?? Math.min(4, Math.max(1, items.length))
-  return <FeedHydratedBody items={items} skeletonCount={n} />
+  return (
+    <>
+      <HomeFeedStaticFallback items={items} />
+      <FeedHydratedBody items={items} skeletonCount={n} />
+    </>
+  )
 }

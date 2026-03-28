@@ -3,7 +3,7 @@
  * Injected into index.html via Vite (see vite.config.ts); keep tokens in sync.
  * Align `public/site.webmanifest` `short_name` / `description` / `name` with this file.
  */
-export const SITE_ORIGIN = 'https://www.cotten.io' as const
+export const SITE_ORIGIN = 'https://cotten.io' as const
 
 export const siteUrls = {
   canonical: `${SITE_ORIGIN}/`,
@@ -20,6 +20,9 @@ export const manifestShortName = "Tim Cotten's Home Page" as const
 /** Shared blurb: manifest `description`, meta description, OG/Twitter body, JSON-LD site/page/person. */
 export const siteSummary =
   "Tim Cotten | Builds Autonomous AI Agents. Founder of Scrypted: a network for discovery, fuzzy verification, and attention auctions. Delula and Sidelines. Ex-EA, Ex-Mythic. ERC-8004, x402 contributor; adjunct at George Mason University." as const
+
+/** Subpage <title> / share title for /latest and /updates (keep in sync with scripts/prerender.mjs). */
+export const latestUpdatesHtmlTitle = 'Latest updates | Tim Cotten | Builds Autonomous AI Agents'
 
 export const siteMeta = {
   /** <title> / og:title (tab + share headline; matches siteSummary lead) */

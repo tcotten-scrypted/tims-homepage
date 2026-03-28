@@ -2,6 +2,9 @@
 /**
  * Injects SSR HTML for selected routes into dist HTML files so crawlers see real content.
  * Run after: vite build && vite build --ssr src/entry-server.tsx --outDir dist/server
+ *
+ * Home (/) uses Vite-injected meta from siteMeta. Subpages patch title + canonical + og/twitter URL/title.
+ * Keep LATEST_UPDATES_HTML_TITLE / UPDATES_HTML_TITLE in sync with src/seo/siteMeta.ts.
  */
 
 import { readFileSync, writeFileSync, existsSync, rmSync, mkdirSync } from 'node:fs'
@@ -13,6 +16,12 @@ const prettyRoot = path.resolve(__dirname, '..')
 const distDir = path.join(prettyRoot, 'dist')
 const serverEntry = path.join(distDir, 'server', 'entry-server.js')
 const indexPath = path.join(distDir, 'index.html')
+
+const SITE_ORIGIN = 'https://cotten.io'
+/** Sync: siteMeta.latestUpdatesHtmlTitle */
+const LATEST_UPDATES_HTML_TITLE = 'Latest updates | Tim Cotten | Builds Autonomous AI Agents'
+/** Distinct tab title for /updates (same page component as /latest) */
+const UPDATES_HTML_TITLE = 'Updates | Tim Cotten | Builds Autonomous AI Agents'
 
 const ROOT_MARKER = '<div id="root"></div>'
 
@@ -38,15 +47,59 @@ function buildPage(innerHtml) {
   return template.slice(0, idx) + `<div id="root">${innerHtml}</div>` + template.slice(idx + ROOT_MARKER.length)
 }
 
+/**
+ * @param {string} html
+ * @param {{ title: string; canonical: string; ogUrl: string; ogTitle: string }} m
+ */
+function applySubpageMeta(html, m) {
+  return html
+    .replace(/<title>[^<]*<\/title>/, `<title>${m.title}</title>`)
+    .replace(/<link rel="canonical" href="[^"]*"\s*\/>/, `<link rel="canonical" href="${m.canonical}" />`)
+    .replace(
+      /<meta property="og:url" content="[^"]*"\s*\/>/,
+      `<meta property="og:url" content="${m.ogUrl}" />`,
+    )
+    .replace(
+      /<meta property="og:title" content="[^"]*"\s*\/>/,
+      `<meta property="og:title" content="${m.ogTitle}" />`,
+    )
+    .replace(
+      /<meta name="twitter:title" content="[^"]*"\s*\/>/,
+      `<meta name="twitter:title" content="${m.ogTitle}" />`,
+    )
+}
+
 const routes = [
-  { pathname: '/', outFile: indexPath },
-  { pathname: '/latest', outFile: path.join(distDir, 'latest', 'index.html') },
+  { pathname: '/', outFile: indexPath, meta: null },
+  {
+    pathname: '/latest',
+    outFile: path.join(distDir, 'latest', 'index.html'),
+    meta: {
+      title: LATEST_UPDATES_HTML_TITLE,
+      canonical: `${SITE_ORIGIN}/latest/`,
+      ogUrl: `${SITE_ORIGIN}/latest/`,
+      ogTitle: LATEST_UPDATES_HTML_TITLE,
+    },
+  },
+  {
+    pathname: '/updates',
+    outFile: path.join(distDir, 'updates', 'index.html'),
+    meta: {
+      title: UPDATES_HTML_TITLE,
+      canonical: `${SITE_ORIGIN}/updates/`,
+      ogUrl: `${SITE_ORIGIN}/updates/`,
+      ogTitle: UPDATES_HTML_TITLE,
+    },
+  },
 ]
 
 let count = 0
-for (const { pathname, outFile } of routes) {
+for (const { pathname, outFile, meta } of routes) {
   const inner = renderRoute(pathname)
-  const out = buildPage(inner)
+  let out = buildPage(inner)
+  if (meta) {
+    out = applySubpageMeta(out, meta)
+  }
   if (pathname !== '/') {
     mkdirSync(path.dirname(outFile), { recursive: true })
   }

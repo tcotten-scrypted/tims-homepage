@@ -69,7 +69,7 @@ h4 {
   pointer-events: auto;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 520px) {
   .splash-banner__overlay {
     align-items: center;
     justify-content: center;

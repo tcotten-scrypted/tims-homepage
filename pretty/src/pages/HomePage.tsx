@@ -3,6 +3,8 @@ import { GraduationCap, Mail } from 'lucide-react'
 import { BoardyIntroButton } from 'boardy-intro-react'
 import 'boardy-intro-react/style.css'
 import { HomeFeedSection } from '../components/HomeFeedSection'
+import { HOME_FRIENDS_SECTION_ENABLED } from '../friends/friends'
+import { HomeFriendsSection } from '../components/HomeFriendsSection'
 import { HomeJsonLd } from '../components/HomeJsonLd'
 import { HomeNav } from '../components/HomeNav'
 import { SplashBanner } from '../SplashBanner'
@@ -343,6 +345,8 @@ export default function HomePage() {
         </section>
 
         <HomeFeedSection />
+
+        {HOME_FRIENDS_SECTION_ENABLED ? <HomeFriendsSection /> : null}
 
         <section
           id="thesis"

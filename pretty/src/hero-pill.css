@@ -69,21 +69,12 @@
   color: #e4dcff;
 }
 
-@media (max-width: 420px) {
-  .hero-pill {
-    flex-direction: column;
-    text-align: center;
-    border-radius: 1.125rem;
-    padding: 1.1rem 1.75rem 1.1rem 1.25rem;
-  }
-
-  .hero-pill__tagline {
-    margin-top: 0.35rem;
-  }
-}
-
-/* X-small phones: column layout is too tall over the splash video — stay row, scale down */
-@media (max-width: 400px) {
+/*
+ * Phones / narrow viewports: always a compact horizontal strip.
+ * (The old ≤420px column “card” left a dead zone 401–430px and Pro Max widths
+ * skipped both rules, so real devices kept the tall layout or huge default row.)
+ */
+@media (max-width: 520px) {
   .hero-pill {
     flex-direction: row;
     align-items: center;
@@ -110,14 +101,14 @@
   }
 
   .hero-pill__title {
-    font-size: clamp(0.92rem, 4.5vw, 1.15rem);
+    font-size: clamp(0.92rem, 4.2vw, 1.2rem);
     line-height: 1.12;
     letter-spacing: -0.025em;
   }
 
   .hero-pill__tagline {
     margin-top: 0.1rem;
-    font-size: clamp(0.62rem, 2.8vw, 0.74rem);
+    font-size: clamp(0.62rem, 2.6vw, 0.78rem);
     line-height: 1.28;
   }
 }

@@ -12,12 +12,16 @@ import {
   Rss,
   Trophy,
   UserRound,
+  Users,
 } from 'lucide-react'
+
+import { HOME_FRIENDS_SECTION_ENABLED } from '../friends/friends'
 
 /** Order matches `HomePage` main column top → bottom (after splash). */
 const SECTION_NAV: { href: string; label: string; icon: LucideIcon }[] = [
   { href: '/#home-intro', label: 'About', icon: UserRound },
   { href: '/#updates', label: 'Updates', icon: Rss },
+  { href: '/#friends', label: 'Friends', icon: Users },
   { href: '/#thesis', label: 'Thesis', icon: Lightbulb },
   { href: '/#building', label: 'Building', icon: Rocket },
   { href: '/#skills', label: 'Skills', icon: Layers },
@@ -26,7 +30,7 @@ const SECTION_NAV: { href: string; label: string; icon: LucideIcon }[] = [
   { href: '/#public-repositories', label: 'Repos', icon: FolderGit2 },
   { href: '/#career', label: 'Career', icon: Briefcase },
   { href: '/#media', label: 'Media', icon: BookOpen },
-]
+].filter((item) => HOME_FRIENDS_SECTION_ENABLED || item.href !== '/#friends')
 
 const TOP_ITEM = {
   href: '/#top',

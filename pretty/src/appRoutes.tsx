@@ -10,6 +10,7 @@ export function AppRoutes() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/latest" element={<LatestUpdatesPage />} />
+      <Route path="/updates" element={<LatestUpdatesPage />} />
       <Route path="/demo" element={<Navigate to="/demo/palette-1" replace />} />
       <Route path="/demo/palette-1" element={<DemoPalette1Page />} />
       <Route path="/debug/ux-components" element={<UxComponentsDebugPage />} />
