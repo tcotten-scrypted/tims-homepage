@@ -396,17 +396,24 @@ export default function HomePage() {
                   agents - tasked with fulfilling goals like shopping based on their
                   user&apos;s preferences - will also be susceptible to persuasion.
                 </p>
+                <p>
+                  We are on the verge of a new market for agentic advertising: mapping the keyword bidding of yesterday to the token embeddings of today.
+                </p>
               </article>
               <article className="home-thesis-card" role="listitem">
                 <span className="home-thesis-card__idx" aria-hidden>
                   04
                 </span>
-                <p className="home-thesis-card__subtitle">Ad Auctions for Machines</p>
+                <p className="home-thesis-card__subtitle">
+                  Attention Auctions &amp; Fuzzy Validation
+                </p>
                 <p>
                   We now have primitives for agent Identity, Reputation, Verification,
-                  Payments, and Coordination &amp; Fuzzy Verification (ERC-8004,
-                  x402, A2A, etc). It follows that the next primitives include
-                  mechanisms for attention markets.
+                  Payments, and Coordination (ERC-8004, x402, A2A, etc).
+                </p>
+                <p>
+                  It follows that the next primitives include mechanisms for attention
+                  markets and for validating fuzzy/non-deterministic work.
                 </p>
               </article>
             </div>
