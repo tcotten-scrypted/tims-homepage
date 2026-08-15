@@ -31,6 +31,13 @@ const critters = new Critters({
   allowRules: [
     /^body\.home-shell$/,
     /^body\.home-shell \.splash-banner$/,
+    /^body\.home-shell \.splash-banner--umap$/,
+    /^body\.home-shell \.home-umap-caption$/,
+    /^\.home-umap-hero$/,
+    /^body\.home-shell \.home-nav/,
+    /^\.splash-banner__placeholder/,
+    /^\.splash-banner__ambient/,
+    /^\.splash-banner__load-/,
     // Feed uses react-tweet under body.home-shell; Critters root is [data-critters-container].
     /^body\.home-shell \.home-feed-tile__post \.react-tweet-theme$/,
     // Subpages: [data-critters-container] sits *inside* <main>/<section>, so layout + shell type

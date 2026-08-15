@@ -13,13 +13,38 @@ import {
   getMediaUrl,
   useTweet,
 } from 'react-tweet'
-import type { MediaDetails } from 'react-tweet/api'
+import type { MediaDetails, Tweet } from 'react-tweet/api'
 import 'react-tweet/theme.css'
 
 import type { HomeFeedItem } from '../feed/homeFeed'
 import { HOME_FEED_PROFILE } from '../feed/homeFeed'
 
 type EnrichedTweet = ReturnType<typeof enrichTweet>
+
+/** react-tweet's enrichTweet assumes every entities[] exists; X often omits empty ones. */
+function normalizeTweetForEnrich(tweet: Tweet): Tweet {
+  const withEntities = <T extends { entities?: Tweet['entities'] }>(value: T): T => {
+    const entities = value.entities ?? ({} as Tweet['entities'])
+    return {
+      ...value,
+      entities: {
+        hashtags: entities.hashtags ?? [],
+        user_mentions: entities.user_mentions ?? [],
+        urls: entities.urls ?? [],
+        symbols: entities.symbols ?? [],
+        ...(entities.media ? { media: entities.media } : {}),
+      },
+    }
+  }
+
+  const normalized = withEntities(tweet)
+  if (!normalized.quoted_tweet) return normalized
+
+  return {
+    ...normalized,
+    quoted_tweet: withEntities(normalized.quoted_tweet),
+  }
+}
 
 /** Tweet fetches with index < this run immediately; rest wait for viewport (reduces critical request chain). */
 const DEFAULT_EAGER_TWEET_COUNT = 1
@@ -247,7 +272,7 @@ function CompactFeedTweet({ id, showTopBorder }: { id: string; showTopBorder?: b
     )
   }
 
-  const tweet = enrichTweet(data)
+  const tweet = enrichTweet(normalizeTweetForEnrich(data))
   const likes = formatNumber(tweet.favorite_count)
   const comments = formatNumber(tweet.conversation_count)
 

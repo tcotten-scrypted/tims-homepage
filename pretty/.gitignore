@@ -23,3 +23,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Generated from ~/Downloads/interactive-3d-umap-tokens.html via scripts/prepare_umap.py
+public/research/tokens/llama-8b-token-3d-viewer/app/index.html
+public/research/tokens/llama-8b-token-3d-viewer/manifest.json
+public/research/tokens/llama-8b-token-3d-viewer/search.idx
+public/research/tokens/llama-8b-token-3d-viewer/displays.bin
+public/research/tokens/llama-8b-token-3d-viewer/data.bin

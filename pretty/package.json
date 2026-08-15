@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run icons && tsc -b && vite build && vite build --ssr src/entry-server.tsx --outDir dist/server && NODE_ENV=production node scripts/prerender.mjs && node scripts/inline-critical-css.mjs",
+    "umap": "python3 scripts/prepare_umap.py",
+    "build": "npm run umap && npm run icons && tsc -b && vite build && vite build --ssr src/entry-server.tsx --outDir dist/server && NODE_ENV=production node scripts/prerender.mjs && node scripts/inline-critical-css.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "deploy": "node scripts/deploy-s3.mjs",

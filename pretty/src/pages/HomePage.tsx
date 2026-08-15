@@ -7,164 +7,53 @@ import { HOME_FRIENDS_SECTION_ENABLED } from '../friends/friends'
 import { HomeFriendsSection } from '../components/HomeFriendsSection'
 import { HomeJsonLd } from '../components/HomeJsonLd'
 import { HomeNav } from '../components/HomeNav'
-import { SplashBanner } from '../SplashBanner'
+import { HeroPill } from '../HeroPill'
+import { UmapHeroBanner } from '../UmapHeroBanner'
 import { BuildingAccentLazyMount } from '../components/BuildingAccentLazyMount'
 import '../site.css'
 import '../styles/home-shell.css'
 
 const SKILL_CLOUD: { category: string; pills: string[] }[] = [
   {
-    category: 'Human languages',
-    pills: ['English', 'Japanese'],
-  },
-  {
-    category: 'Programming languages',
-    pills: [
-      'Python',
-      'TypeScript / JavaScript',
-      'Rust',
-      'Solidity',
-      'Cairo',
-      'Move',
-      'SQL',
-      'C',
-      'C++',
-      'C#',
-      'Lua',
-      'Prolog',
-      'Lisp',
-      'PHP',
-      'Ruby',
-      'Java',
-    ],
-  },
-  {
-    category: 'Web frameworks',
-    pills: ['React', 'Next.js', 'Node.js', 'Flask / FastAPI', 'Django', 'Ruby on Rails'],
+    category: 'Agentic frameworks',
+    pills: ['LangGraph', 'LangChain', 'LangFuse', 'ElizaOS', 'AutoGPT'],
   },
   {
     category: 'AI / ML',
-    pills: ['PyTorch', 'JAX', 'TensorFlow', 'scikit-learn', 'Hugging Face Transformers'],
+    pills: ['PyTorch', 'Hugging Face Transformers', 'JAX', 'TensorFlow', 'scikit-learn'],
   },
   {
-    category: 'Agentic frameworks',
-    pills: [
-      'LangChain',
-      'LangGraph',
-      'LangFuse',
-      'AutoGPT',
-      'OpenAgents',
-      'AVB',
-      'ElizaOS',
-      'DayDreams',
-    ],
+    category: 'Programming languages',
+    pills: ['Python', 'TypeScript / JavaScript', 'Rust', 'Solidity', 'SQL'],
+  },
+  {
+    category: 'Web frameworks',
+    pills: ['React', 'Next.js', 'Node.js', 'FastAPI', 'Django'],
+  },
+  {
+    category: 'Blockchain',
+    pills: ['Solidity', 'Foundry', 'ERC standards', 'wagmi', 'Chainlink'],
   },
   {
     category: 'Game engines',
     pills: ['Unity', 'Three.js', 'Babylon.js'],
   },
   {
-    category: 'Blockchain',
-    pills: [
-      'Solidity',
-      'Cairo',
-      'Move',
-      'Hardhat',
-      'Foundry',
-      'Forge',
-      'Anvil',
-      'Circom',
-      'Noir',
-      'zk-SNARKs',
-      'zk-STARKs',
-      'ZK-rollups',
-      'Slither',
-      'Aderyn',
-      'Echidna',
-      'Medusa',
-      'OpenZeppelin Contracts',
-      'ERC standards',
-      'wagmi',
-      'viem',
-      'ethers.js',
-      'CDP',
-      'Alchemy',
-      'Infura',
-      'The Graph',
-      'Tenderly',
-      'EVM interoperability (EIL)',
-      'Wire Network',
-      'Chainlink',
-    ],
+    category: 'Human languages',
+    pills: ['English', 'Japanese'],
   },
   {
-    category: 'DevTools & security',
-    pills: [
-      'VS Code + Vim',
-      'Cursor',
-      'Claude Code',
-      'Codex',
-      'Foundry',
-      'Hardhat',
-      'Slither',
-      'Aderyn',
-      'Echidna',
-      'Medusa',
-      'Tenderly',
-      'OpenZeppelin',
-      'Defender',
-      'Solhint',
-      'Git',
-      'GitOps',
-    ],
+    category: 'DevOps & cloud',
+    pills: ['Docker', 'Kubernetes', 'AWS Lambda', 'Amazon Bedrock', 'GitHub Actions'],
   },
   {
-    category: 'DevOps',
+    category: 'Security',
     pills: [
-      'Linux',
-      'Windows',
-      'macOS',
-      'Git',
-      'Docker',
-      'Kubernetes',
-      'Terraform',
-      'GitHub Actions',
-      'Jenkins',
-      'Ansible',
-      'Prometheus',
-      'Grafana',
-      'OpenTelemetry',
-    ],
-  },
-  {
-    category: 'AWS',
-    pills: [
-      'EC2',
-      'ELB · Multi-AZ · Auto Scaling',
-      'Lambda',
-      'Bedrock',
-      'Guardrails',
-      'SageMaker',
-    ],
-  },
-  {
-    category: 'Security & compliance',
-    pills: [
-      'PCI/DSS',
-      'Zero Trust · IAM hardening',
-      'DevSecOps · policy-as-code',
       'OWASP LLM Top 10',
-      'Cryptography · blockchain · ZKP',
-      'Secure smart contracts · invariant testing',
-    ],
-  },
-  {
-    category: 'Cross-cutting',
-    pills: [
-      'Full-stack Web3 · contracts · frontend · backend',
-      'AI-augmented workflows · Cursor · Claude',
-      'Hybrid cloud · on-prem · multi-OS',
-      'High availability · production reliability',
+      'PCI/DSS',
+      'Zero Trust · IAM',
+      'Smart contract auditing',
+      'DevSecOps',
     ],
   },
 ]
@@ -284,15 +173,25 @@ export default function HomePage() {
       <HomeJsonLd />
       <div data-critters-container>
         <HomeNav />
-        <SplashBanner />
+        <div className="home-umap-hero">
+          <UmapHeroBanner />
+          <p className="home-umap-caption">
+            I wondered how tokens relate to each other, what manifolds they might reveal, so I
+            reduced their dimensions to 3D and built a beautiful visualizer. Try searching the
+            neighborhoods!
+          </p>
+        </div>
         <div className="home-main home-main--intro-only">
           <section
             id="home-intro"
             className="home-section home-hero"
             aria-labelledby="home-tagline"
           >
-            <div className="home-hero__grid">
-              <div className="home-main__prose">
+            <div className="home-hero__grid home-hero__grid--profile">
+              <div className="home-hero__pill">
+                <HeroPill />
+              </div>
+              <div className="home-main__prose home-hero__copy">
                 <p className="home-section__kicker">Profile</p>
                 <p id="home-tagline" className="home-hero__lede">
                   Building a monopoly in the machine economy; previously built the AI
@@ -304,26 +203,6 @@ export default function HomePage() {
                   undergrads and AI agents.
                 </p>
               </div>
-              <aside className="home-hero__aside" aria-label="Highlights">
-                <div className="home-stats">
-                  <div className="home-stat">
-                    <span className="home-stat__value">$1.5M</span>
-                    <span className="home-stat__label">Pre-seed raised</span>
-                  </div>
-                  <div className="home-stat">
-                    <span className="home-stat__value">10k+ Community</span>
-                    <span className="home-stat__label">Token Holders</span>
-                  </div>
-                  <div className="home-stat">
-                    <span className="home-stat__value">ERC-8004</span>
-                    <span className="home-stat__label">Standards Contributor</span>
-                  </div>
-                  <div className="home-stat">
-                    <span className="home-stat__value">x402</span>
-                    <span className="home-stat__label">Hackathon wins</span>
-                  </div>
-                </div>
-              </aside>
             </div>
             <div className="home-cta-grid" role="list">
               <a className="home-cta-tile" role="listitem" href="https://scrypted.ai">
@@ -454,7 +333,7 @@ export default function HomePage() {
                 built an organic community of token holders (10k+) around our work.
               </p>
               <p className="building-cta">
-                Raising our seed round. Get my attention via a16z, PTC, or Boardy:{' '}
+                You want in? Get my attention via a16z, PTC, or Boardy:{' '}
                 <BoardyIntroButton
                   boardyIconSrc="/boardy_profile_icon.jpg"
                   introMessage="Hi Boardy, I'd like to connect with Tim Cotten (Scrypted) about what I'm building. Happy to share context so you can route this the right way."
@@ -465,8 +344,6 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-
-        <SkillsSection />
 
         <section
           id="hackathon-wins"
@@ -850,6 +727,8 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        <SkillsSection />
 
         <section id="media" className="home-section home-section--muted" aria-labelledby="media-heading">
           <div className="home-main__prose home-main__prose--wide">

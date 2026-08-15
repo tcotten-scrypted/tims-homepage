@@ -22,6 +22,8 @@ const SITE_ORIGIN = 'https://cotten.io'
 const LATEST_UPDATES_HTML_TITLE = 'Latest updates | Tim Cotten | Builds Autonomous AI Agents'
 /** Distinct tab title for /updates (same page component as /latest) */
 const UPDATES_HTML_TITLE = 'Updates | Tim Cotten | Builds Autonomous AI Agents'
+const UMAP_VIEWER_HTML_TITLE =
+  'Token Relationships in 3D (Llama-3-8B) | Tim Cotten | Builds Autonomous AI Agents'
 
 const ROOT_MARKER = '<div id="root"></div>'
 
@@ -75,7 +77,7 @@ function applySubpageMeta(html, m) {
 }
 
 const routes = [
-  { pathname: '/', outFile: indexPath, meta: null },
+  { pathname: '/', outFile: indexPath, meta: null, homeShell: true },
   {
     pathname: '/latest',
     outFile: path.join(distDir, 'latest', 'index.html'),
@@ -85,6 +87,7 @@ const routes = [
       ogUrl: `${SITE_ORIGIN}/latest/`,
       ogTitle: LATEST_UPDATES_HTML_TITLE,
     },
+    homeShell: true,
   },
   {
     pathname: '/updates',
@@ -95,17 +98,37 @@ const routes = [
       ogUrl: `${SITE_ORIGIN}/updates/`,
       ogTitle: UPDATES_HTML_TITLE,
     },
+    homeShell: true,
+  },
+  {
+    pathname: '/research/tokens/llama-8b-token-3d-viewer/',
+    outFile: path.join(
+      distDir,
+      'research',
+      'tokens',
+      'llama-8b-token-3d-viewer',
+      'index.html',
+    ),
+    meta: {
+      title: UMAP_VIEWER_HTML_TITLE,
+      canonical: `${SITE_ORIGIN}/research/tokens/llama-8b-token-3d-viewer/`,
+      ogUrl: `${SITE_ORIGIN}/research/tokens/llama-8b-token-3d-viewer/`,
+      ogTitle: UMAP_VIEWER_HTML_TITLE,
+    },
+    homeShell: false,
   },
 ]
 
 let count = 0
-for (const { pathname, outFile, meta } of routes) {
+for (const { pathname, outFile, meta, homeShell = false } of routes) {
   const inner = renderRoute(pathname)
   let out = buildPage(inner)
   if (meta) {
     out = applySubpageMeta(out, meta)
   }
-  out = applyHomeShellBody(out)
+  if (homeShell) {
+    out = applyHomeShellBody(out)
+  }
   if (pathname !== '/') {
     mkdirSync(path.dirname(outFile), { recursive: true })
   }

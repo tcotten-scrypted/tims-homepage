@@ -50,6 +50,207 @@ h4 {
   max-height: min(42vh, 420px);
 }
 
+.splash-banner--umap {
+  aspect-ratio: 16 / 9;
+  max-height: min(52vh, 520px);
+  background: #0b0d12;
+  background-image: none;
+}
+
+.umap-viewer-page {
+  position: fixed;
+  inset: 0;
+  background: #0b0d12;
+}
+
+.splash-banner--fullscreen {
+  margin: 0;
+  left: 0;
+  transform: none;
+  width: 100%;
+  max-width: none;
+  max-height: none;
+  height: 100%;
+  aspect-ratio: auto;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.splash-banner__umap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  z-index: 2;
+  background: #0b0d12;
+  opacity: 0;
+  transition: opacity 0.55s ease;
+  touch-action: manipulation;
+}
+
+.splash-banner__umap--ready {
+  opacity: 1;
+}
+
+.splash-banner__umap:focus {
+  outline: none;
+}
+
+.splash-banner__ambient {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Full-screen loader behind the iframe while assets fetch */
+.splash-banner__ambient:not(.splash-banner__ambient--overlay) {
+  opacity: 1;
+}
+
+/* After iframe mounts: composite motion on top of the live viewer */
+.splash-banner__ambient--overlay {
+  z-index: 3;
+  mix-blend-mode: screen;
+  opacity: 0.38;
+  pointer-events: none;
+}
+
+.splash-banner__ambient--overlay * {
+  pointer-events: none;
+}
+
+.splash-banner__fullscreen {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  z-index: 6;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.7rem;
+  font-family: Sora, system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #e8eaed;
+  background: rgba(12, 14, 20, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+}
+
+.splash-banner__fullscreen:hover {
+  background: rgba(20, 24, 32, 0.92);
+  color: #fff;
+}
+
+.splash-banner__placeholder-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  opacity: 1;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+}
+
+.splash-banner__placeholder-wrap--out {
+  opacity: 0;
+}
+
+.splash-banner__placeholder,
+.splash-banner__placeholder-fallback {
+  position: absolute;
+  inset: 0;
+}
+
+.splash-banner__placeholder-fallback {
+  background: #0b0d12;
+}
+
+.splash-banner__placeholder-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.splash-banner__load-ui {
+  position: absolute;
+  left: 50%;
+  bottom: 1rem;
+  z-index: 9;
+  transform: translateX(-50%);
+  width: min(18rem, calc(100% - 2rem));
+  text-align: center;
+  pointer-events: auto;
+}
+
+.splash-banner__load-label {
+  margin: 0 0 0.45rem;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  color: rgba(232, 234, 237, 0.72);
+}
+
+.splash-banner__load-bar {
+  height: 3px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.splash-banner__load-bar-fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-origin: left center;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #4f2bd4, #7c5cf0 55%, #0d9488);
+  transition: transform 0.35s ease-out;
+  will-change: transform;
+}
+
+/* Shimmer on the track only — never animate fill transform (that caused bounce). */
+.splash-banner__load-bar--idle {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.14) 45%,
+    rgba(255, 255, 255, 0.06) 100%
+  );
+  background-size: 220% 100%;
+  animation: splash-banner-bar-shimmer 2.4s linear infinite;
+}
+
+@keyframes splash-banner-bar-shimmer {
+  0% {
+    background-position: 120% 0;
+  }
+  100% {
+    background-position: -120% 0;
+  }
+}
+
+.splash-banner__load-cta {
+  margin-top: 0.55rem;
+  padding: 0.38rem 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  background: rgba(12, 14, 20, 0.82);
+  color: #e8eaed;
+  font-family: Sora, system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.splash-banner__load-cta:hover {
+  background: rgba(20, 24, 32, 0.92);
+}
+
 .splash-banner__video {
   position: absolute;
   inset: 0;
@@ -67,7 +268,9 @@ h4 {
 
 @media (prefers-reduced-motion: reduce) {
   .splash-banner__video,
-  .splash-banner__video--ready {
+  .splash-banner__video--ready,
+  .splash-banner__umap,
+  .splash-banner__umap--ready {
     transition: none;
   }
 }
@@ -75,6 +278,7 @@ h4 {
 .splash-banner__overlay {
   position: absolute;
   inset: 0;
+  z-index: 7;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -83,6 +287,10 @@ h4 {
 }
 
 .splash-banner__overlay .hero-pill {
+  pointer-events: auto;
+}
+
+.splash-banner__fullscreen {
   pointer-events: auto;
 }
 

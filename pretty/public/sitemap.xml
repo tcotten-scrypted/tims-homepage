@@ -6,7 +6,11 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://cotten.io/latest</loc>
+    <loc>https://cotten.io/research/tokens/llama-8b-token-3d-viewer/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
